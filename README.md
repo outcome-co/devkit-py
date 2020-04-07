@@ -1,7 +1,13 @@
 # flake8-py
 ![ci-badge](https://github.com/outcome-co/flake8-py/workflows/Continuous%20Integration/badge.svg)
 
-Description TBD
+A wrapper package around commonly used flake8 extensions.
+
+## Usage
+
+```sh
+pip install outcome-flake8-py
+```
 
 ## Development
 
