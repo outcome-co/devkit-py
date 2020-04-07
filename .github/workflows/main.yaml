@@ -103,5 +103,5 @@ jobs:
         - name: "Publish package"
           run: make publish
           env:
-            PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
+            POETRY_PYPI_TOKEN_PYPI: ${{ secrets.PYPI_TOKEN }}
 

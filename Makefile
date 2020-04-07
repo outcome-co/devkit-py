@@ -72,15 +72,5 @@ clean:
 build: clean lint
 	poetry build
 
-
-ifdef INSIDE_CI
-# Inside a CI environment, we'll need to configure poetry
-# with the pypi token
-publish: build
-	poetry config pypi-token.pypi $(PYPI_TOKEN)
-	poetry publish
-
-else
 publish: build
 	poetry publish
-endif
