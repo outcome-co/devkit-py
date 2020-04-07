@@ -1,7 +1,20 @@
 [flake8]
 max-line-length = 130
 max-complexity = 18
-select = B,C,E,F,W,T4,B9
-ignore = W503
+# select = B,C,E,F,W,T4,B9
 count = True
+exclude = .git, dist, .cache, __pycache__
 docstring-convention = google
+
+ignore = W503,
+         # Require object as a base class
+         WPS306,
+         # Allow code in __init__.py
+         WPS412,
+         # Allow the use of metadata vars
+         WPS410
+
+# pytest fixtures require shadowing
+per-file-ignores = **/test_*.py: WPS442
+
+[isort]
