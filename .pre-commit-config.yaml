@@ -21,7 +21,7 @@ repos:
         language: system  # Running on the local system
         stages: [commit, push]
         verbose: true
-        entry: make lint
+        entry: sh -c "CI=true make lint"
         types: [file, python]  # Only triggered if python files are changed in the commit
         pass_filenames: false
 
