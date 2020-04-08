@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "outcome-flake8-py"
-version = "0.1.4"
+version = "0.2.0"
 description = "A wrapper package around commonly used flake8 extensions."
 authors = ["Douglas Willcocks <douglas@outcome.co>"]
 readme = "README.md"
