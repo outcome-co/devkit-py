@@ -190,6 +190,17 @@ test = ["coverage", "coveralls", "mock", "pytest", "pytest-cov"]
 
 [[package]]
 category = "main"
+description = "Error highlight plugin for Flake8."
+name = "flake8-colors"
+optional = false
+python-versions = "*"
+version = "0.1.6"
+
+[package.dependencies]
+flake8 = ">3.0.0"
+
+[[package]]
+category = "main"
 description = "Flake8 lint for trailing commas."
 name = "flake8-commas"
 optional = false
@@ -654,7 +665,7 @@ docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
 testing = ["jaraco.itertools", "func-timeout"]
 
 [metadata]
-content-hash = "fc10b176fd7b5969b97e9e1c263c76dd4c688bad9f4ae9dd16ca254e1cb63b37"
+content-hash = "fe2dba1a8ba0a3f44157ca8a986b73e498efd4226f7587101f50f93508a300f6"
 python-versions = "^3.7"
 
 [metadata.files]
@@ -723,6 +734,9 @@ flake8-bugbear = [
 flake8-builtins = [
     {file = "flake8-builtins-1.5.2.tar.gz", hash = "sha256:fe7be13fe51bfb06bdae6096c6488e328c822c3aa080e24b91b77116a4fbb8b0"},
     {file = "flake8_builtins-1.5.2-py2.py3-none-any.whl", hash = "sha256:a0296d23da92a6f2494243b9f2039bfdb73f34aba20054c1b70b2a60c84745bb"},
+]
+flake8-colors = [
+    {file = "flake8-colors-0.1.6.tar.gz", hash = "sha256:508fcf6efc15826f2146b42172ab41999555e07af43fcfb3e6a28ad596189560"},
 ]
 flake8-commas = [
     {file = "flake8-commas-2.0.0.tar.gz", hash = "sha256:d3005899466f51380387df7151fb59afec666a0f4f4a2c6a8995b975de0f44b7"},

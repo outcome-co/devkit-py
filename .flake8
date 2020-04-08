@@ -6,6 +6,8 @@ count = True
 exclude = .git, dist, .cache, __pycache__
 docstring-convention = google
 
+format = ${cyan}%(path)s${reset}:${yellow_bold}%(row)d${reset}:${green_bold}%(col)d${reset}: ${red_bold}%(code)s${reset} %(text)s
+
 ignore = W503,
          # Require object as a base class
          WPS306,
