@@ -1,12 +1,12 @@
-# flake8-py
-![ci-badge](https://github.com/outcome-co/flake8-py/workflows/Continuous%20Integration/badge.svg)
+# devkit-py
+![ci-badge](https://github.com/outcome-co/devkit-py/workflows/Continuous%20Integration/badge.svg)
 
-A wrapper package around commonly used flake8 extensions.
+A package containing common dev dependencies for python projects.
 
 ## Usage
 
 ```sh
-pip install outcome-flake8-py
+pip install outcome-devkit-py
 ```
 
 ## Development
