@@ -1,16 +1,16 @@
 [tool.poetry]
-name = "outcome-flake8-py"
+name = "outcome-devkit-py"
 version = "0.2.0"
-description = "A wrapper package around commonly used flake8 extensions."
+description = "A package containing common dev dependencies for python projects."
 authors = ["Douglas Willcocks <douglas@outcome.co>"]
 readme = "README.md"
 license = "ISC"
 packages = [
   { include = "outcome", from = "src" }
 ]
-homepage = "https://github.com/outcome-co/flake8-py"
-repository = "https://github.com/outcome-co/flake8-py"
-documentation = "https://github.com/outcome-co/flake8-py#README"
+homepage = "https://github.com/outcome-co/devkit-py"
+repository = "https://github.com/outcome-co/devkit-py"
+documentation = "https://github.com/outcome-co/devkit-py#README"
 
 [tool.poetry.dependencies]
 python = "^3.7"
@@ -25,10 +25,12 @@ flake8-breakpoint = "^1.1.0"
 flake8-if-expr = "^1.0.0"
 flake8-return = "^1.1.1"
 flake8-colors = "^0.1.6"
-
-[tool.poetry.dev-dependencies]
 flake8 = "^3.7.9"
 black = "^19.10b0"
+coverage = "^5.0.3"
+pytest = "^5.3.5"
+pre-commit = "^2.2.0"
+ipdb = "^0.13.2"
 
 [tool.black]
 line-length = 130
