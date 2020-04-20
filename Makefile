@@ -34,22 +34,27 @@ endif
 
 # CI WORKFLOW
 
-lint: lint-flake lint-black
+lint: lint-flake lint-black lint-isort
 	
 lint-flake:
 	poetry run flake8 .
 
 ifdef INSIDE_CI
-# Inside the CI process, we want to run black 
-# with the --check flag to not change the files
-# but fail if changes should be made
+# Inside the CI process, we want to run black with the --check flag and isort
+# with the --check-only flag to not change the files but fail if changes should be made
 lint-black:
 	poetry run black --check .
 
+lint-isort:
+	poetry run isort -rc . --check-only
+
 else
-# Outside of the CI process, run black normally
+# Outside of the CI process, run black and isort normally
 lint-black:
 	poetry run black .
+
+lint-isort:
+	poetry run isort -rc .
 endif
 
 install-build-system:
