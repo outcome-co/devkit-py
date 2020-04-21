@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "outcome-devkit-py"
-version = "0.3.0"
+version = "0.3.1"
 description = "A package containing common dev dependencies for python projects."
 authors = ["Douglas Willcocks <douglas@outcome.co>"]
 readme = "README.md"
