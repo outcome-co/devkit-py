@@ -1,4 +1,4 @@
-.PHONY: lint build publish clean 
+.PHONY: build publish clean 
 
 .PHONY: install-build-system dev-setup production-setup
 
@@ -6,15 +6,6 @@
 
 PKG_NAME = $(shell docker run --rm -v $$(pwd):/work/ outcomeco/action-read-toml:latest --path /work/pyproject.toml --key tool.poetry.name)
 PKG_VERSION = $(shell docker run --rm -v $$(pwd):/work/ outcomeco/action-read-toml:latest --path /work/pyproject.toml --key tool.poetry.version) 
-
-# Determine whether we're in a CI environment such as Github Actions
-# Github Actions defines a GITHUB_ACTIONS=true variable
-# Generic tools can set CI=true 
-
-ifneq "$(or $(GITHUB_ACTIONS), $(CI))" ""
-$(info Running in CI mode)
-INSIDE_CI=true
-endif
 
 # The BUILD_SYSTEM_REQUIREMENTS variable is used *inside* a docker container 
 # during the build process when 'make install-build-system' is run, which would normally require
@@ -30,31 +21,6 @@ endif
 ifndef BUILD_SYSTEM_REQUIREMENTS
 # If the BUILD_SYSTEM_REQUIREMENTS variable is not defined, fetch it using the docker
 BUILD_SYSTEM_REQUIREMENTS = $(shell docker run --rm -v $$(pwd):/work/ outcomeco/action-read-toml:latest --path /work/pyproject.toml --key build-system.requires)
-endif
-
-# CI WORKFLOW
-
-lint: lint-flake lint-black lint-isort
-	
-lint-flake:
-	poetry run flake8 .
-
-ifdef INSIDE_CI
-# Inside the CI process, we want to run black with the --check flag and isort
-# with the --check-only flag to not change the files but fail if changes should be made
-lint-black:
-	poetry run black --check .
-
-lint-isort:
-	poetry run isort -rc . --check-only
-
-else
-# Outside of the CI process, run black and isort normally
-lint-black:
-	poetry run black .
-
-lint-isort:
-	poetry run isort -rc .
 endif
 
 install-build-system:
@@ -74,7 +40,7 @@ clean:
 	rm -rf **/*.egg-info
 	rm -rf .coverage
 
-build: clean lint
+build: clean
 	poetry build
 
 publish: build
