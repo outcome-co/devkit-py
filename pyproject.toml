@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "outcome-devkit-py"
-version = "0.4.0"
+version = "0.5.0"
 description = "A package containing common dev dependencies for python projects."
 authors = ["Douglas Willcocks <douglas@outcome.co>"]
 readme = "README.md"
@@ -34,6 +34,7 @@ mock = "^4.0.2"
 pdbpp = "^0.10.2"
 ipython = "^7.13.0"
 isort = "^4.3.21"
+mypy = "^0.770"
 
 [tool.black]
 line-length = 130
