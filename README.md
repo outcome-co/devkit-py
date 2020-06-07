@@ -6,7 +6,7 @@ A package containing common dev dependencies for python projects.
 ## Usage
 
 ```sh
-pip install outcome-devkit-py
+poetry add -D outcome-devkit-py
 ```
 
 ## Development
