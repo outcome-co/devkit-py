@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "outcome-devkit-py"
+name = "outcome-devkit"
 version = "0.5.0"
 description = "A package containing common dev dependencies for python projects."
 authors = ["Douglas Willcocks <douglas@outcome.co>"]
@@ -35,10 +35,38 @@ pdbpp = "^0.10.2"
 ipython = "^7.13.0"
 isort = "^4.3.21"
 mypy = "^0.770"
+pytest-asyncio = "^0.12.0"
+outcome-utils = "^1.1.0"
+
+[tool.isort]
+skip_glob = "*/.cache/**/*"
+
+[tool.coverage.run]
+branch = true
+data_file = 'coverage/data'
+source = ['src']
+omit = [
+   "test/*"
+]
+parallel = true
+# The plugin path is relative to inside 'src', as the
+# PYTHONPATH is set to 'src' during make
+# This will be replaced when ext is repackaged outside the app
+plugins = ["outcome.devkit.env_coverage"]
+
+[tool.coverage.report]
+fail_under = 100
+skip_empty = true
+
+[tool.coverage.html]
+show_contexts = true
+directory = 'coverage/html'
 
 [tool.black]
 line-length = 130
 include = '\.pyi?$'
+# This stops black from rewriting quotes
+skip-string-normalization = true
 exclude = '''
 /(
     \.git
@@ -53,7 +81,14 @@ exclude = '''
   | \.cache
 )/
 '''
+[tool.commitizen]
+name = "cz_conventional_commits"
+version = "0.5.0"
+tag_format = "v$version"
+bump_message = "chore(version): $current_version → $new_version"
+version_files = ["pyproject.toml:version"]
 
 [build-system]
 requires = ["poetry>=1.0.5"]
 build-backend = "poetry.masonry.api"
+
