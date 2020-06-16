@@ -33,7 +33,7 @@ class TestEnvCoverage:
         plugin = EnvironmentExclusionPlugin()
         plugin.configure(mock_config)
 
-        mock_config.set_option.assert_called_once_with(ignore_opt_name, ['# pragma: exclude-from-integration-tests'])
+        mock_config.set_option.assert_called_once_with(ignore_opt_name, ['# pragma: only-covered-in-integration-tests'])
 
     @patch('outcome.devkit.env_coverage.env', auto_spec=True)
     def test_exclude_unit_tests(self, mock_env: Mock, mock_config: Mock):
@@ -43,7 +43,7 @@ class TestEnvCoverage:
         plugin = EnvironmentExclusionPlugin()
         plugin.configure(mock_config)
 
-        mock_config.set_option.assert_called_once_with(ignore_opt_name, ['# pragma: exclude-from-unit-tests'])
+        mock_config.set_option.assert_called_once_with(ignore_opt_name, ['# pragma: only-covered-in-unit-tests'])
 
     @patch('outcome.devkit.env_coverage.env', auto_spec=True)
     def test_exclude_both(self, mock_env: Mock, mock_config: Mock):
@@ -53,7 +53,7 @@ class TestEnvCoverage:
         plugin = EnvironmentExclusionPlugin()
         plugin.configure(mock_config)
 
-        mock_config.set_option.assert_any_call(ignore_opt_name, ['# pragma: exclude-from-unit-tests'])
+        mock_config.set_option.assert_any_call(ignore_opt_name, ['# pragma: only-covered-in-unit-tests'])
         mock_config.set_option.assert_called_with(
-            ignore_opt_name, ['# pragma: exclude-from-unit-tests', '# pragma: exclude-from-integration-tests'],
+            ignore_opt_name, ['# pragma: only-covered-in-unit-tests', '# pragma: only-covered-in-integration-tests'],
         )
