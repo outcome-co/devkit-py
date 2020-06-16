@@ -19,8 +19,8 @@ from coverage.plugin_support import Plugins
 from outcome.utils import env
 
 _environments = {
-    'exclude-from-unit-tests': lambda: not env.is_test(),
-    'exclude-from-integration-tests': lambda: not env.is_integration(),
+    'only-covered-in-unit-tests': lambda: not env.is_test(),
+    'only-covered-in-integration-tests': lambda: not env.is_integration(),
 }
 
 ignore_opt_name = 'report:exclude_lines'
