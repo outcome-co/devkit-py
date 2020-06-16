@@ -19,11 +19,11 @@ from coverage.plugin_support import Plugins
 from outcome.utils import env
 
 _environments = {
-    'no-cover-for-test': lambda: not env.is_test(),
-    'no-cover-for-integration': lambda: not env.is_integration(),
+    'exclude-from-unit-tests': lambda: not env.is_test(),
+    'exclude-from-integration-tests': lambda: not env.is_integration(),
 }
 
-_ignore_opt_name = 'report:exclude_lines'
+ignore_opt_name = 'report:exclude_lines'
 
 
 class EnvironmentExclusionPlugin(CoveragePlugin):
@@ -45,13 +45,13 @@ class EnvironmentExclusionPlugin(CoveragePlugin):
 
         # exclude_lines is an array of patterns that coverage will use to
         # attempt to match lines for exclusion
-        exclude_lines = config.get_option(_ignore_opt_name)
+        exclude_lines = config.get_option(ignore_opt_name)
         exclude_lines.append(pragma)
 
-        config.set_option(_ignore_opt_name, exclude_lines)
+        config.set_option(ignore_opt_name, exclude_lines)
 
 
-def coverage_init(reg: Plugins, options: Any) -> None:
+def coverage_init(reg: Plugins, options: Any) -> None:  # pragma: no cover
     """The plugin entrypoint, called directly by coveragepy.
 
     It allows us to register the plugin with coveragepy.
