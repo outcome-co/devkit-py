@@ -49,10 +49,6 @@ omit = [
    "test/*"
 ]
 parallel = true
-# The plugin path is relative to inside 'src', as the
-# PYTHONPATH is set to 'src' during make
-# This will be replaced when ext is repackaged outside the app
-plugins = ["outcome.devkit.env_coverage"]
 
 [tool.coverage.report]
 fail_under = 100
