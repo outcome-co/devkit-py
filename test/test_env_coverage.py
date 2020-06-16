@@ -1,11 +1,8 @@
+from unittest.mock import Mock, patch
+
 import pytest
-
 from coverage.config import CoverageConfig
-
-from unittest.mock import patch, Mock
-
-from outcome.devkit.env_coverage import EnvironmentExclusionPlugin, _ignore_opt_name
-from outcome.utils import env
+from outcome.devkit.env_coverage import EnvironmentExclusionPlugin, ignore_opt_name
 
 
 @pytest.fixture
@@ -36,7 +33,7 @@ class TestEnvCoverage:
         plugin = EnvironmentExclusionPlugin()
         plugin.configure(mock_config)
 
-        mock_config.set_option.assert_called_once_with(_ignore_opt_name, ['# pragma: exclude-from-integration-tests'])
+        mock_config.set_option.assert_called_once_with(ignore_opt_name, ['# pragma: exclude-from-integration-tests'])
 
     @patch('outcome.devkit.env_coverage.env', auto_spec=True)
     def test_exclude_unit_tests(self, mock_env: Mock, mock_config: Mock):
@@ -46,7 +43,7 @@ class TestEnvCoverage:
         plugin = EnvironmentExclusionPlugin()
         plugin.configure(mock_config)
 
-        mock_config.set_option.assert_called_once_with(_ignore_opt_name, ['# pragma: exclude-from-unit-tests'])
+        mock_config.set_option.assert_called_once_with(ignore_opt_name, ['# pragma: exclude-from-unit-tests'])
 
     @patch('outcome.devkit.env_coverage.env', auto_spec=True)
     def test_exclude_both(self, mock_env: Mock, mock_config: Mock):
@@ -56,5 +53,7 @@ class TestEnvCoverage:
         plugin = EnvironmentExclusionPlugin()
         plugin.configure(mock_config)
 
-        mock_config.set_option.assert_any_call(_ignore_opt_name, ['# pragma: exclude-from-unit-tests'])
-        mock_config.set_option.assert_called_with(_ignore_opt_name, ['# pragma: exclude-from-unit-tests', '# pragma: exclude-from-integration-tests'])
+        mock_config.set_option.assert_any_call(ignore_opt_name, ['# pragma: exclude-from-unit-tests'])
+        mock_config.set_option.assert_called_with(
+            ignore_opt_name, ['# pragma: exclude-from-unit-tests', '# pragma: exclude-from-integration-tests'],
+        )

@@ -40,6 +40,7 @@ outcome-utils = "^1.1.0"
 
 [tool.isort]
 skip_glob = "*/.cache/**/*"
+line_length = 130
 
 [tool.coverage.run]
 branch = true

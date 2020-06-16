@@ -23,7 +23,7 @@ _environments = {
     'exclude-from-integration-tests': lambda: not env.is_integration(),
 }
 
-_ignore_opt_name = 'report:exclude_lines'
+ignore_opt_name = 'report:exclude_lines'
 
 
 class EnvironmentExclusionPlugin(CoveragePlugin):
@@ -37,7 +37,6 @@ class EnvironmentExclusionPlugin(CoveragePlugin):
         # We don't stop at the first, as `env` may allow for overlapping
         # environments
         for marker, env_test in _environments.items():
-            #import pdb; pdb.set_trace()
             if env_test():
                 self.ignore_marker(config, marker)
 
@@ -46,10 +45,10 @@ class EnvironmentExclusionPlugin(CoveragePlugin):
 
         # exclude_lines is an array of patterns that coverage will use to
         # attempt to match lines for exclusion
-        exclude_lines = config.get_option(_ignore_opt_name)
+        exclude_lines = config.get_option(ignore_opt_name)
         exclude_lines.append(pragma)
 
-        config.set_option(_ignore_opt_name, exclude_lines)
+        config.set_option(ignore_opt_name, exclude_lines)
 
 
 def coverage_init(reg: Plugins, options: Any) -> None:  # pragma: no cover
