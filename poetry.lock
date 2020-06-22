@@ -344,7 +344,7 @@ description = "The plugin checks `if expressions` (ternary operator)"
 name = "flake8-if-expr"
 optional = false
 python-versions = ">=3.6,<4.0"
-version = "1.0.1"
+version = "1.0.4"
 
 [package.dependencies]
 flake8-plugin-utils = ">=1.0,<2.0"
@@ -1284,8 +1284,8 @@ flake8-eradicate = [
     {file = "flake8_eradicate-0.3.0-py3-none-any.whl", hash = "sha256:e8b32b32300bfb407fe7ef74667c8d2d3a6a81bdf6f09c14a7bcc82b7b870f8b"},
 ]
 flake8-if-expr = [
-    {file = "flake8-if-expr-1.0.1.tar.gz", hash = "sha256:0ddd4f2380e919b1626b1e9d075c53449b54f90dfe20ddf16b385673f7c5be44"},
-    {file = "flake8_if_expr-1.0.1-py3-none-any.whl", hash = "sha256:8e18cae97f70ccb59c2e51012755d4d247f823eb554d5ca0ad9a55dfc1dbf346"},
+    {file = "flake8-if-expr-1.0.4.tar.gz", hash = "sha256:e0050b59b46114b6e20628d61175a7a608d3eb55fb5b90d87db0f9352a91a491"},
+    {file = "flake8_if_expr-1.0.4-py3-none-any.whl", hash = "sha256:3f2d45cc1e48b4cdf22377ca1624b2a59b6f1c7825ba1cdee99ff1e647e7ae3f"},
 ]
 flake8-isort = [
     {file = "flake8-isort-2.9.1.tar.gz", hash = "sha256:0d34b266080e1748412b203a1690792245011706b1858c203476b43460bf3652"},
