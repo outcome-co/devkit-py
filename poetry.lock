@@ -108,7 +108,7 @@ version = "7.1.2"
 [[package]]
 category = "main"
 description = "Cross-platform colored terminal text."
-marker = "platform_system == \"Windows\" or sys_platform == \"win32\""
+marker = "sys_platform == \"win32\" or platform_system == \"Windows\""
 name = "colorama"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
@@ -658,7 +658,7 @@ description = "A collection of python utils."
 name = "outcome-utils"
 optional = false
 python-versions = ">=3.8,<4.0"
-version = "3.1.0"
+version = "3.2.0"
 
 [package.dependencies]
 colored = ">=1.4.2,<2.0.0"
@@ -1385,8 +1385,8 @@ nodeenv = [
     {file = "nodeenv-1.4.0-py2.py3-none-any.whl", hash = "sha256:4b0b77afa3ba9b54f4b6396e60b0c83f59eaeb2d63dc3cc7a70f7f4af96c82bc"},
 ]
 outcome-utils = [
-    {file = "outcome-utils-3.1.0.tar.gz", hash = "sha256:95cdeedec940c4a9b4ad3d022009b490c49602258e4638cadef2cbde8eb88835"},
-    {file = "outcome_utils-3.1.0-py3-none-any.whl", hash = "sha256:0833f75cb56b2d9c315ec75b77b963f41e4a54853154f96ef497d943c831e09d"},
+    {file = "outcome-utils-3.2.0.tar.gz", hash = "sha256:7f62e954cb9d7c8d7ec203144bf396923bec91d4d0c492130060b949f73e0c4a"},
+    {file = "outcome_utils-3.2.0-py3-none-any.whl", hash = "sha256:77d3244b70d74795945ea874b94f4d10775391a99d84a3db61b1853c82021118"},
 ]
 packaging = [
     {file = "packaging-20.4-py2.py3-none-any.whl", hash = "sha256:998416ba6962ae7fbd6596850b80e17859a5753ba17c32284f67bfff33784181"},
