@@ -17,6 +17,17 @@ version = "0.1.0"
 
 [[package]]
 category = "main"
+description = "ASGI specs, helper code, and adapters"
+name = "asgiref"
+optional = false
+python-versions = ">=3.5"
+version = "3.2.10"
+
+[package.extras]
+tests = ["pytest", "pytest-asyncio"]
+
+[[package]]
+category = "main"
 description = "Read/rewrite/write Python ASTs"
 name = "astor"
 optional = false
@@ -603,6 +614,17 @@ i18n = ["Babel (>=0.8)"]
 
 [[package]]
 category = "main"
+description = "Small library to dynamically create python functions."
+name = "makefun"
+optional = false
+python-versions = "*"
+version = "1.9.3"
+
+[package.dependencies]
+six = "*"
+
+[[package]]
+category = "main"
 description = "Safely add untrusted strings to HTML/XML markup."
 name = "markupsafe"
 optional = false
@@ -668,11 +690,13 @@ description = "A collection of python utils."
 name = "outcome-utils"
 optional = false
 python-versions = ">=3.8,<4.0"
-version = "4.1.1"
+version = "4.2.0"
 
 [package.dependencies]
+asgiref = ">=3.2.10,<4.0.0"
 colored = ">=1.4.2,<2.0.0"
 jinja2 = ">=2.11.2,<3.0.0"
+makefun = ">=1.9.3,<2.0.0"
 rich = ">=6.2,<8.0"
 toml = ">=0.10.1,<0.11.0"
 
@@ -1123,6 +1147,10 @@ appnope = [
     {file = "appnope-0.1.0-py2.py3-none-any.whl", hash = "sha256:5b26757dc6f79a3b7dc9fab95359328d5747fcb2409d331ea66d0272b90ab2a0"},
     {file = "appnope-0.1.0.tar.gz", hash = "sha256:8b995ffe925347a2138d7ac0fe77155e4311a0ea6d6da4f5128fe4b3cbe5ed71"},
 ]
+asgiref = [
+    {file = "asgiref-3.2.10-py3-none-any.whl", hash = "sha256:9fc6fb5d39b8af147ba40765234fa822b39818b12cc80b35ad9b0cef3a476aed"},
+    {file = "asgiref-3.2.10.tar.gz", hash = "sha256:7e51911ee147dd685c3c8b805c0ad0cb58d360987b56953878f8c06d2d1c6f1a"},
+]
 astor = [
     {file = "astor-0.8.1-py2.py3-none-any.whl", hash = "sha256:070a54e890cefb5b3739d19f30f5a5ec840ffc9c50ffa7d23cc9fc1a38ebbfc5"},
     {file = "astor-0.8.1.tar.gz", hash = "sha256:6a6effda93f4e1ce9f618779b2dd1d9d84f1e32812c23a29b3fff6fd7f63fa5e"},
@@ -1350,6 +1378,10 @@ jinja2 = [
     {file = "Jinja2-2.11.2-py2.py3-none-any.whl", hash = "sha256:f0a4641d3cf955324a89c04f3d94663aa4d638abe8f733ecd3582848e1c37035"},
     {file = "Jinja2-2.11.2.tar.gz", hash = "sha256:89aab215427ef59c34ad58735269eb58b1a5808103067f7bb9d5836c651b3bb0"},
 ]
+makefun = [
+    {file = "makefun-1.9.3-py2.py3-none-any.whl", hash = "sha256:ffe6a4ae006f4206c5bec77bcdc5bc00b356a5ac7359a8b2ddb1f7efa2dc5dec"},
+    {file = "makefun-1.9.3.tar.gz", hash = "sha256:709ea9ab8e8c98ac3a12a464d75748d5161a8752a2bf79daaf02f5f7e8b66132"},
+]
 markupsafe = [
     {file = "MarkupSafe-1.1.1-cp27-cp27m-macosx_10_6_intel.whl", hash = "sha256:09027a7803a62ca78792ad89403b1b7a73a01c8cb65909cd876f7fcebd79b161"},
     {file = "MarkupSafe-1.1.1-cp27-cp27m-manylinux1_i686.whl", hash = "sha256:e249096428b3ae81b08327a63a485ad0878de3fb939049038579ac0ef61e17e7"},
@@ -1418,8 +1450,8 @@ nodeenv = [
     {file = "nodeenv-1.4.0.tar.gz", hash = "sha256:26941644654d8dd5378720e38f62a3bac5f9240811fb3b8913d2663a17baa91c"},
 ]
 outcome-utils = [
-    {file = "outcome-utils-4.1.1.tar.gz", hash = "sha256:97cdc600ea30e55e301f68dca3ad8601e567f6d9057f5a9beb7f4b4b9ca53ac0"},
-    {file = "outcome_utils-4.1.1-py3-none-any.whl", hash = "sha256:c3733e465d362faf85476ac48cc2a16730866c836787cbb61963d2921c02d55c"},
+    {file = "outcome-utils-4.2.0.tar.gz", hash = "sha256:132e024c2ce90549a388711e4dd97b77c20a1ca9199a0776d62b33b51d4c9950"},
+    {file = "outcome_utils-4.2.0-py3-none-any.whl", hash = "sha256:97d5d071c494aaa753600137f70d708b85f7bfaea5e8f12c02a8e390419bf44f"},
 ]
 packaging = [
     {file = "packaging-20.4-py2.py3-none-any.whl", hash = "sha256:998416ba6962ae7fbd6596850b80e17859a5753ba17c32284f67bfff33784181"},
