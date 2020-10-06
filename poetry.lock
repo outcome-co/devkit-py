@@ -690,14 +690,15 @@ description = "A collection of python utils."
 name = "outcome-utils"
 optional = false
 python-versions = ">=3.8,<4.0"
-version = "4.2.0"
+version = "4.4.0"
 
 [package.dependencies]
 asgiref = ">=3.2.10,<4.0.0"
 colored = ">=1.4.2,<2.0.0"
 jinja2 = ">=2.11.2,<3.0.0"
 makefun = ">=1.9.3,<2.0.0"
-rich = ">=6.2,<8.0"
+rich = ">=6.2,<9.0"
+semver = ">=2.10.2,<3.0.0"
 toml = ">=0.10.1,<0.11.0"
 
 [[package]]
@@ -981,6 +982,14 @@ typing-extensions = ">=3.7.4,<4.0.0"
 
 [package.extras]
 jupyter = ["ipywidgets (>=7.5.1,<8.0.0)"]
+
+[[package]]
+category = "main"
+description = "Python helper for Semantic Versioning (http://semver.org/)"
+name = "semver"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
+version = "2.10.2"
 
 [[package]]
 category = "main"
@@ -1450,8 +1459,8 @@ nodeenv = [
     {file = "nodeenv-1.4.0.tar.gz", hash = "sha256:26941644654d8dd5378720e38f62a3bac5f9240811fb3b8913d2663a17baa91c"},
 ]
 outcome-utils = [
-    {file = "outcome-utils-4.2.0.tar.gz", hash = "sha256:132e024c2ce90549a388711e4dd97b77c20a1ca9199a0776d62b33b51d4c9950"},
-    {file = "outcome_utils-4.2.0-py3-none-any.whl", hash = "sha256:97d5d071c494aaa753600137f70d708b85f7bfaea5e8f12c02a8e390419bf44f"},
+    {file = "outcome-utils-4.4.0.tar.gz", hash = "sha256:e059e321a5c6429c3e623d99d45b365dabcde8584b2c58c23c78f60074e188d7"},
+    {file = "outcome_utils-4.4.0-py3-none-any.whl", hash = "sha256:c357a1d56b2bc573d81a9d61305dd3829241fa1e374861e7cb209447895b3bb9"},
 ]
 packaging = [
     {file = "packaging-20.4-py2.py3-none-any.whl", hash = "sha256:998416ba6962ae7fbd6596850b80e17859a5753ba17c32284f67bfff33784181"},
@@ -1582,6 +1591,10 @@ restructuredtext-lint = [
 rich = [
     {file = "rich-6.2.0-py3-none-any.whl", hash = "sha256:fa55d5d6ba9a0df1f1c95518891b57b13f1d45548a9a198a87b093fceee513ec"},
     {file = "rich-6.2.0.tar.gz", hash = "sha256:f99c877277906e1ff83b135c564920590ba31188f424dcdb5d1cae652a519b4b"},
+]
+semver = [
+    {file = "semver-2.10.2-py2.py3-none-any.whl", hash = "sha256:21e80ca738975ed513cba859db0a0d2faca2380aef1962f48272ebf9a8a44bd4"},
+    {file = "semver-2.10.2.tar.gz", hash = "sha256:c0a4a9d1e45557297a722ee9bac3de2ec2ea79016b6ffcaca609b0bc62cf4276"},
 ]
 six = [
     {file = "six-1.15.0-py2.py3-none-any.whl", hash = "sha256:8b74bedcbbbaca38ff6d7491d76f2b06b3592611af620f8426e82dddb04a5ced"},
