@@ -34,7 +34,7 @@ mock = "^4.0.2"
 pdbpp = "^0.10.2"
 ipython = "^7.13.0"
 isort = "^4.3.21"
-mypy = ">=0.780,<0.783"
+mypy = ">=0.780,<0.791"
 pytest-asyncio = ">=0.12,<0.15"
 outcome-utils = "^4.0.0"
 
