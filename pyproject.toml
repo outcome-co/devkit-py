@@ -36,7 +36,7 @@ ipython = "^7.13.0"
 isort = "^4.3.21"
 mypy = ">=0.780,<0.791"
 pytest-asyncio = ">=0.12,<0.15"
-outcome-utils = "^4.0.0"
+outcome-utils = "^4.11.0"
 
 [tool.isort]
 skip_glob = "*/.cache/**/*"

@@ -6,6 +6,19 @@ import pytest
 from outcome.utils import env
 
 
+def skip_for_e2e(fn: Callable) -> Callable:
+    """Marks a unit test or test class as skippable during e2e tests.
+
+    Args:
+        fn (Callable): The function to decorate.
+
+    Returns:
+        Callable: The decorated function.
+    """
+    decorator = pytest.mark.skipif(env.is_e2e(), reason='Skipped in e2e tests')
+    return decorator(fn)
+
+
 def skip_for_integration(fn: Callable) -> Callable:
     """Marks a unit test or test class as skippable during integration tests.
 
