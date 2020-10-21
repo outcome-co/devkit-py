@@ -13,7 +13,7 @@ repository = "https://github.com/outcome-co/devkit-py"
 documentation = "https://github.com/outcome-co/devkit-py#README"
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = "~3.8.5"
 flake8-builtins = "^1.5.2"
 flake8-commas = "^2.0.0"
 flake8-debugger = "^3.2.1"
@@ -37,7 +37,7 @@ isort = "^4.3.21"
 mypy = ">=0.780,<0.791"
 pytest-asyncio = ">=0.12,<0.15"
 outcome-utils = "^4.11.0"
-pact-python = "1.2.9"
+pact-python = "1.2.7"
 
 [tool.isort]
 skip_glob = "*/.cache/**/*"
