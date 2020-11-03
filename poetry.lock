@@ -724,7 +724,7 @@ python-versions = "*"
 
 [[package]]
 name = "outcome-utils"
-version = "4.13.0"
+version = "4.14.1"
 description = "A collection of python utils."
 category = "main"
 optional = false
@@ -737,6 +737,7 @@ colored = ">=1.4.2,<2.0.0"
 "dogpile.cache" = ">=1.0.2,<2.0.0"
 jinja2 = ">=2.11.2,<3.0.0"
 makefun = ">=1.9.3,<2.0.0"
+pyfakefs = ">=4.1.0,<5.0.0"
 requests = ">=2.24.0,<3.0.0"
 rich = ">=6.2,<10.0"
 semver = ">=2.10.2,<3.0.0"
@@ -915,6 +916,14 @@ python-versions = ">=3.5"
 
 [package.dependencies]
 snowballstemmer = "*"
+
+[[package]]
+name = "pyfakefs"
+version = "4.2.1"
+description = "pyfakefs implements a fake file system that mocks the Python file system modules."
+category = "main"
+optional = false
+python-versions = ">=3.5"
 
 [[package]]
 name = "pyflakes"
@@ -1594,8 +1603,8 @@ nodeenv = [
     {file = "nodeenv-1.5.0.tar.gz", hash = "sha256:ab45090ae383b716c4ef89e690c41ff8c2b257b85b309f01f3654df3d084bd7c"},
 ]
 outcome-utils = [
-    {file = "outcome-utils-4.13.0.tar.gz", hash = "sha256:3bd7aea9e6e74e2940c2fae10f7228f9522d52b1e1360bbecb0b685769cc8a94"},
-    {file = "outcome_utils-4.13.0-py3-none-any.whl", hash = "sha256:b6593380909bc1772a99b0f89b150075f179c7595bc3ec8d820d0790e798124f"},
+    {file = "outcome-utils-4.14.1.tar.gz", hash = "sha256:523f3bc3b1026132bdb5ca9a0940b66c27e35d454027e20e082f21dde3305fef"},
+    {file = "outcome_utils-4.14.1-py3-none-any.whl", hash = "sha256:491bbda9cff5259ef85b5a473b8a2b573c5d1e19374ea2200e5fc0d5ea1c8542"},
 ]
 packaging = [
     {file = "packaging-20.4-py2.py3-none-any.whl", hash = "sha256:998416ba6962ae7fbd6596850b80e17859a5753ba17c32284f67bfff33784181"},
@@ -1658,6 +1667,10 @@ pycodestyle = [
 pydocstyle = [
     {file = "pydocstyle-5.1.1-py3-none-any.whl", hash = "sha256:aca749e190a01726a4fb472dd4ef23b5c9da7b9205c0a7857c06533de13fd678"},
     {file = "pydocstyle-5.1.1.tar.gz", hash = "sha256:19b86fa8617ed916776a11cd8bc0197e5b9856d5433b777f51a3defe13075325"},
+]
+pyfakefs = [
+    {file = "pyfakefs-4.2.1-py3-none-any.whl", hash = "sha256:2b1bf60ebbbaa3bf8c4c263576ec38e69368bdce4e6d7dbdbe136999f24ece6d"},
+    {file = "pyfakefs-4.2.1.tar.gz", hash = "sha256:0aad5ac8cb671f296a497a83a4672b54ee2fc0acb947a51198ca10a3b656100f"},
 ]
 pyflakes = [
     {file = "pyflakes-2.2.0-py2.py3-none-any.whl", hash = "sha256:0d94e0e05a19e57a99444b6ddcf9a6eb2e5c68d3ca1e98e90707af8152c90a92"},
