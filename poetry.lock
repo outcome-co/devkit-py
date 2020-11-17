@@ -325,7 +325,7 @@ test = ["coverage", "coveralls", "mock", "pytest", "pytest-cov"]
 
 [[package]]
 name = "flake8-colors"
-version = "0.1.8"
+version = "0.1.9"
 description = "Error highlight plugin for Flake8."
 category = "main"
 optional = false
@@ -1429,8 +1429,8 @@ flake8-builtins = [
     {file = "flake8_builtins-1.5.3-py2.py3-none-any.whl", hash = "sha256:7706babee43879320376861897e5d1468e396a40b8918ed7bccf70e5f90b8687"},
 ]
 flake8-colors = [
-    {file = "flake8-colors-0.1.8.tar.gz", hash = "sha256:7a2c14ace214e22ba07870e25efc4ccd640f21227de9820482ea73b68343ee96"},
-    {file = "flake8_colors-0.1.8-py3-none-any.whl", hash = "sha256:b63b81bd7edf45ed4d9ac1d144b5fdcf60f6dffd1f4e6b066aaf5e77fe055af3"},
+    {file = "flake8-colors-0.1.9.tar.gz", hash = "sha256:35a5483a7d156d0438b402faea2fefe45b411571ce5dc93ba28670fd9429cc46"},
+    {file = "flake8_colors-0.1.9-py3-none-any.whl", hash = "sha256:e80ed1839dc151730adc51207e632823aa1f393d6db32897ffd0e60dceecfd9f"},
 ]
 flake8-commas = [
     {file = "flake8-commas-2.0.0.tar.gz", hash = "sha256:d3005899466f51380387df7151fb59afec666a0f4f4a2c6a8995b975de0f44b7"},
