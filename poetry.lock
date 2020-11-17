@@ -724,11 +724,11 @@ python-versions = "*"
 
 [[package]]
 name = "outcome-utils"
-version = "4.14.1"
+version = "4.17.2"
 description = "A collection of python utils."
 category = "main"
 optional = false
-python-versions = ">=3.8.5,<3.9.0"
+python-versions = ">=3.8.6,<3.9.0"
 
 [package.dependencies]
 asgiref = ">=3.2.10,<4.0.0"
@@ -1268,8 +1268,8 @@ python-versions = "*"
 
 [metadata]
 lock-version = "1.1"
-python-versions = "~3.8.5"
-content-hash = "415b02774bf78f0324620b4be3a3725ac9568ba98b82dbd2c79ed5102b1cb004"
+python-versions = "~3.8.6"
+content-hash = "9a13a5d02f95e7d215a7556962f7198250955113c0b859ec5d7cfb32c48a3a3b"
 
 [metadata.files]
 appdirs = [
@@ -1604,8 +1604,8 @@ nodeenv = [
     {file = "nodeenv-1.5.0.tar.gz", hash = "sha256:ab45090ae383b716c4ef89e690c41ff8c2b257b85b309f01f3654df3d084bd7c"},
 ]
 outcome-utils = [
-    {file = "outcome-utils-4.14.1.tar.gz", hash = "sha256:523f3bc3b1026132bdb5ca9a0940b66c27e35d454027e20e082f21dde3305fef"},
-    {file = "outcome_utils-4.14.1-py3-none-any.whl", hash = "sha256:491bbda9cff5259ef85b5a473b8a2b573c5d1e19374ea2200e5fc0d5ea1c8542"},
+    {file = "outcome-utils-4.17.2.tar.gz", hash = "sha256:168eaa50a62b28566e1b396f76a90b56ac45610825b3f5d5b63f476e6839e7cf"},
+    {file = "outcome_utils-4.17.2-py3-none-any.whl", hash = "sha256:e47320a6c0fe032f3ce778964297aa3993ebd2901d802d7de1063eb27be2b5ee"},
 ]
 packaging = [
     {file = "packaging-20.4-py2.py3-none-any.whl", hash = "sha256:998416ba6962ae7fbd6596850b80e17859a5753ba17c32284f67bfff33784181"},
