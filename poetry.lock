@@ -724,11 +724,11 @@ python-versions = "*"
 
 [[package]]
 name = "outcome-utils"
-version = "4.17.3"
+version = "4.18.2"
 description = "A collection of python utils."
 category = "main"
 optional = false
-python-versions = ">=3.8.6,<3.9.0"
+python-versions = ">=3.8,<3.9"
 
 [package.dependencies]
 asgiref = ">=3.2.10,<4.0.0"
@@ -738,6 +738,7 @@ colored = ">=1.4.2,<2.0.0"
 jinja2 = ">=2.11.2,<3.0.0"
 makefun = ">=1.9.3,<2.0.0"
 pyfakefs = ">=4.1.0,<5.0.0"
+python-dotenv = ">=0.15.0,<0.16.0"
 requests = ">=2.24.0,<3.0.0"
 rich = ">=6.2,<10.0"
 semver = ">=2.10.2,<3.0.0"
@@ -1000,6 +1001,17 @@ pytest = ">=5.4.0"
 
 [package.extras]
 testing = ["async-generator (>=1.3)", "coverage", "hypothesis (>=5.7.1)"]
+
+[[package]]
+name = "python-dotenv"
+version = "0.15.0"
+description = "Add .env support to your django/flask apps in development and deployments"
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.extras]
+cli = ["click (>=5.0)"]
 
 [[package]]
 name = "pyyaml"
@@ -1604,8 +1616,8 @@ nodeenv = [
     {file = "nodeenv-1.5.0.tar.gz", hash = "sha256:ab45090ae383b716c4ef89e690c41ff8c2b257b85b309f01f3654df3d084bd7c"},
 ]
 outcome-utils = [
-    {file = "outcome-utils-4.17.3.tar.gz", hash = "sha256:97b098c84d0883526c3eb1357a07403b1aa1432dd678bcbf2e5489a5aeb8cb4a"},
-    {file = "outcome_utils-4.17.3-py3-none-any.whl", hash = "sha256:c5876e94ef648683f7316462c8df3b03cb6d4cbc32c467bcdd7ce6c84011731f"},
+    {file = "outcome-utils-4.18.2.tar.gz", hash = "sha256:6b16b28ab30af2c1f94f712960224c32f8c097ec17d4c8fcb9d19f03865d78f5"},
+    {file = "outcome_utils-4.18.2-py3-none-any.whl", hash = "sha256:a9250400495fa46c8c18e8e4ebf01436d0c84d131b9b66e367a2dc65e1a38088"},
 ]
 packaging = [
     {file = "packaging-20.4-py2.py3-none-any.whl", hash = "sha256:998416ba6962ae7fbd6596850b80e17859a5753ba17c32284f67bfff33784181"},
@@ -1700,6 +1712,10 @@ pytest = [
 pytest-asyncio = [
     {file = "pytest-asyncio-0.14.0.tar.gz", hash = "sha256:9882c0c6b24429449f5f969a5158b528f39bde47dc32e85b9f0403965017e700"},
     {file = "pytest_asyncio-0.14.0-py3-none-any.whl", hash = "sha256:2eae1e34f6c68fc0a9dc12d4bea190483843ff4708d24277c41568d6b6044f1d"},
+]
+python-dotenv = [
+    {file = "python-dotenv-0.15.0.tar.gz", hash = "sha256:587825ed60b1711daea4832cf37524dfd404325b7db5e25ebe88c495c9f807a0"},
+    {file = "python_dotenv-0.15.0-py2.py3-none-any.whl", hash = "sha256:0c8d1b80d1a1e91717ea7d526178e3882732420b03f08afea0406db6402e220e"},
 ]
 pyyaml = [
     {file = "PyYAML-5.3.1-cp27-cp27m-win32.whl", hash = "sha256:74809a57b329d6cc0fdccee6318f44b9b8649961fa73144a98735b0aaf029f1f"},
