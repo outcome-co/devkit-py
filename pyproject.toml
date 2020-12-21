@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "outcome-devkit"
-version = "3.5.3"
+version = "3.5.4"
 description = "A package containing common dev dependencies for python projects."
 authors = ["Douglas Willcocks <douglas@outcome.co>"]
 readme = "README.md"
@@ -86,7 +86,7 @@ exclude = '''
 
 [tool.commitizen]
 name = "cz_conventional_commits"
-version = "3.5.3"
+version = "3.5.4"
 tag_format = "v$version"
 bump_message = "chore(version): $current_version → $new_version"
 version_files = ["pyproject.toml:version", "README.md:version-badge"]
