@@ -724,7 +724,7 @@ python-versions = "*"
 
 [[package]]
 name = "outcome-utils"
-version = "4.20.5"
+version = "4.20.6"
 description = "A collection of python utils."
 category = "main"
 optional = false
@@ -1633,8 +1633,8 @@ nodeenv = [
     {file = "nodeenv-1.5.0.tar.gz", hash = "sha256:ab45090ae383b716c4ef89e690c41ff8c2b257b85b309f01f3654df3d084bd7c"},
 ]
 outcome-utils = [
-    {file = "outcome-utils-4.20.5.tar.gz", hash = "sha256:d45ad40039ca77bb400b54ffa61c6fafea9d74c3e82e77f349821600f88dd155"},
-    {file = "outcome_utils-4.20.5-py3-none-any.whl", hash = "sha256:ffaf2f957e52be4907f15e3b4fa1b9439a624ae311dcf155ef0ea18079267fb0"},
+    {file = "outcome-utils-4.20.6.tar.gz", hash = "sha256:0dd88b20f1011ec89ccf1e530a033316e7328caf90c5fff4a3bf7651afb6c64e"},
+    {file = "outcome_utils-4.20.6-py3-none-any.whl", hash = "sha256:853b8a321a4eb545451c46f83ff4b9d00c404106d5c7e120107d13c79831983d"},
 ]
 packaging = [
     {file = "packaging-20.7-py2.py3-none-any.whl", hash = "sha256:eb41423378682dadb7166144a4926e443093863024de508ca5c9737d6bc08376"},
