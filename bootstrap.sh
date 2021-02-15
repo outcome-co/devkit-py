@@ -20,7 +20,7 @@ fi
 
 
 # Install dependencies
-pip install --upgrade "outcome-devkit>=5.0.0"
+pip install --upgrade "outcome-devkit>=5.0.2"
 
 if [ $build_system_only -eq 1 ]; then
 PYTHONPATH=src inv setup.build-system
