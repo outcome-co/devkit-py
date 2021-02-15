@@ -111,9 +111,7 @@ jobs:
       runs-on: ubuntu-latest
       needs: [test]
 
-      # This is triggered when we're not pushing a chore to master - written with the more
-      # complicated syntax (OR of NOT) instead of (NOT of AND) for syntax limitations
-      if: (!startsWith(github.event.head_commit.message, 'chore') || github.event_name != 'push')
+      if: github.event_name == 'push' && !startsWith(github.event.head_commit.message, 'chore')
 
         # From here on, all checks and tests have passed, and we're heading for a release
         # if we're merging into master (i.e. not pull requests or repository_dispatch)
@@ -125,28 +123,40 @@ jobs:
             token: ${{ secrets.OTTO_TOKEN }}
 
         - name: Configure Otto
-          if: github.event_name == 'push'
           run: |
             git config --local user.email "otc-builder@outcome.co"
             git config --local user.name "Otto the Bot"
 
         # This creates a new commit and tag if we're bumping
         - name: Bump version
-          if: github.event_name == 'push'
           id: bump_version
           uses: outcome-co/action-update-version@v2.0.0
 
+        - name: Get python version
+          uses: outcome-co/action-read-toml@v2.0.10
+          id: python_version
+          if: steps.bump_version.outputs.updated == 'true'
+          with:
+            path: pyproject.toml
+            key: tool.poetry.dependencies.python
+
+        - name: Set up python ${{ steps.python_version.outputs.tool_poetry_dependencies_python }}
+          uses: actions/setup-python@v2.2.1
+          if: steps.bump_version.outputs.updated == 'true'
+          with:
+            python-version: ${{ steps.python_version.outputs.tool_poetry_dependencies_python }}
+
         - name: Setup environment
-          if: github.event_name == 'push' && steps.bump_version.outputs.updated == 'true'
+          if: steps.bump_version.outputs.updated == 'true'
           run: ./bootstrap.sh --build-system-only
 
         # If we've created a new version, push it
         - name: Push new version
-          if: github.event_name == 'push' && steps.bump_version.outputs.updated == 'true'
+          if: steps.bump_version.outputs.updated == 'true'
           run: git push origin HEAD:master --follow-tags && git push --tags
 
         - name: Publish package
-          if: github.event_name == 'push' && steps.bump_version.outputs.updated == 'true'
+          if: steps.bump_version.outputs.updated == 'true'
           run: inv release.publish
           env:
             PYTHONPATH: src
