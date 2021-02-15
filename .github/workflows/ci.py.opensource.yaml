@@ -132,19 +132,11 @@ jobs:
           id: bump_version
           uses: outcome-co/action-update-version@v2.0.0
 
-        - name: Get python version
-          uses: outcome-co/action-read-toml@v2.0.10
-          id: python_version
-          if: steps.bump_version.outputs.updated == 'true'
-          with:
-            path: pyproject.toml
-            key: tool.poetry.dependencies.python
-
-        - name: Set up python ${{ steps.python_version.outputs.tool_poetry_dependencies_python }}
+        - name: Set up python 3.8.6
           uses: actions/setup-python@v2.2.1
           if: steps.bump_version.outputs.updated == 'true'
           with:
-            python-version: ${{ steps.python_version.outputs.tool_poetry_dependencies_python }}
+            python-version: "3.8.6"
 
         - name: Setup environment
           if: steps.bump_version.outputs.updated == 'true'
