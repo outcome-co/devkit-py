@@ -43,10 +43,15 @@ jobs:
         - uses: amannn/action-semantic-pull-request@v3.1.0
           if: github.event_name == 'pull_request'
 
-    test_and_release:
-      name: Run checks and tests, then release
+    test:
+      name: Run checks and tests
       runs-on: ubuntu-latest
       needs: [commit_lint]
+
+      strategy:
+        fail-fast: true
+        matrix:
+          python: ['3.8']
 
       # This is triggered when we're not pushing a chore to master - written with the more
       # complicated syntax (OR of NOT) instead of (NOT of AND) for syntax limitations
@@ -59,33 +64,15 @@ jobs:
             ref: ${{ github.sha }}
             token: ${{ secrets.OTTO_TOKEN }}
 
-        - name: Check TODOs
-          uses: outcome-co/action-check-todos@v1.7.5
-          with:
-            pattern: "**/*"
-
         - name: Set up Node
           uses: actions/setup-node@v1
           with:
             node-version: '14.x'
 
-        # - name: Get python version
-        #   uses: outcome-co/action-read-toml@v2.0.10
-        #   id: python_version
-        #   with:
-        #     path: pyproject.toml
-        #     key: tool.poetry.dependencies.python
-
-        # - name: Set up python ${{ steps.python_version.outputs.tool_poetry_dependencies_python }}
-        #   uses: actions/setup-python@v2.2.1
-        #   with:
-        #     python-version: ${{ steps.python_version.outputs.tool_poetry_dependencies_python }}
-
-
-        - name: Set up python 3.8.6
+        - name: Set up python ${{ matrix.python }}
           uses: actions/setup-python@v2.2.1
           with:
-            python-version: 3.8.6
+            python-version: ${{ matrix.python }}
 
         - name: Configure pip cache
           uses: actions/cache@v2
@@ -119,8 +106,23 @@ jobs:
           env:
             PYTHONPATH: src
         
+    release:
+      name: Build and release
+      runs-on: ubuntu-latest
+      needs: [test]
+
+      # This is triggered when we're not pushing a chore to master - written with the more
+      # complicated syntax (OR of NOT) instead of (NOT of AND) for syntax limitations
+      if: (!startsWith(github.event.head_commit.message, 'chore') || github.event_name != 'push')
+
         # From here on, all checks and tests have passed, and we're heading for a release
         # if we're merging into master (i.e. not pull requests or repository_dispatch)
+      steps:
+        - name: Check out code
+          uses: actions/checkout@v2.3.4
+          with:
+            ref: ${{ github.sha }}
+            token: ${{ secrets.OTTO_TOKEN }}
 
         - name: Configure Otto
           if: github.event_name == 'push'
@@ -134,6 +136,10 @@ jobs:
           id: bump_version
           uses: outcome-co/action-update-version@v2.0.0
 
+        - name: Setup environment
+          if: github.event_name == 'push' && steps.bump_version.outputs.updated == 'true'
+          run: ./bootstrap.sh --build-system-only
+
         # If we've created a new version, push it
         - name: Push new version
           if: github.event_name == 'push' && steps.bump_version.outputs.updated == 'true'
@@ -142,11 +148,13 @@ jobs:
         - name: Publish package
           if: github.event_name == 'push' && steps.bump_version.outputs.updated == 'true'
           run: inv release.publish
+          env:
+            PYTHONPATH: src
 
     auto_merge_dependabot:
         name: Auto-approve dependabot pull requests
         runs-on: ubuntu-latest
-        needs: [test_and_release]
+        needs: [test]
 
         if: (github.actor == 'dependabot[bot]' || github.actor == 'dependabot-preview[bot]') && github.event_name == 'pull_request'
 
