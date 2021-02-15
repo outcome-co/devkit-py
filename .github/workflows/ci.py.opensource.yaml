@@ -18,7 +18,6 @@ env:
   PIP_CACHE_DIR: ${{ github.workspace }}/.cache/pip
   GITHUB_TOKEN: ${{ secrets.OTTO_TOKEN }}
   POETRY_PYPI_TOKEN_PYPI: ${{ secrets.PYPI_REGISTRY_TOKEN }}
-  PYTHONPATH: src
 
 jobs:
     commit_lint:
@@ -112,9 +111,13 @@ jobs:
 
         - name: Run checks
           run: inv check.all
+          env:
+            PYTHONPATH: src
 
         - name: Run tests
           run: inv test.all
+          env:
+            PYTHONPATH: src
         
         # From here on, all checks and tests have passed, and we're heading for a release
         # if we're merging into master (i.e. not pull requests or repository_dispatch)
@@ -134,7 +137,7 @@ jobs:
         # If we've created a new version, push it
         - name: Push new version
           if: github.event_name == 'push' && steps.bump_version.outputs.updated == 'true'
-          run: git push origin HEAD:master --follow-tags
+          run: git push origin HEAD:master --follow-tags && git push --tags
 
         - name: Publish package
           if: github.event_name == 'push' && steps.bump_version.outputs.updated == 'true'
