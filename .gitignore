@@ -1,7 +1,4 @@
 
-# Created by https://www.toptal.com/developers/gitignore/api/python,osx,vscode,dotenv
-# Edit at https://www.toptal.com/developers/gitignore?templates=python,osx,vscode,dotenv
-
 ### dotenv ###
 .env
 .env.*
