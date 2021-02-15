@@ -11,4 +11,4 @@ poetry add -D outcome-devkit
 
 ## Development
 
-Remember to run `./pre-commit.sh` when you clone the repository.
+Run `./bootstrap.sh` when you clone the repository to get set up.

@@ -29,15 +29,18 @@ flake8 = "^3.7.9"
 black = "^19.10b0"
 coverage = "^5.0.3"
 pytest = ">=5.3.5,<7.0.0"
-pre-commit = "^2.2.0"
-mock = "^4.0.2"
 pdbpp = "^0.10.2"
 ipython = "^7.13.0"
 isort = "^4.3.21"
-mypy = ">=0.780,<0.791"
 pytest-asyncio = ">=0.12,<0.15"
-outcome-utils = "^4.11.0"
+outcome-utils = "^4.25.0"
 pactman = "^2.28.0"
+outcome-read-toml = "^2.1.0"
+magicinvoke = "^2.4.5"
+colored-traceback = "^0.3.0"
+nox = "^2020.12.31"
+nox-poetry = "^0.8.1"
+pre-commit = "^2.10.1"
 
 [tool.poetry.dev-dependencies]
 
@@ -50,11 +53,11 @@ multi_line_output = 3
 [tool.coverage.run]
 branch = true
 data_file = 'coverage/data'
-source = ['src']
+source = ['src/outcome/devkit']
 omit = [
-   "test/*"
+   "test/*",
+   "src/outcome/devkit/invoke/tasks/*"
 ]
-parallel = true
 
 [tool.coverage.report]
 fail_under = 100
@@ -92,6 +95,6 @@ bump_message = "chore(version): $current_version → $new_version"
 version_files = ["pyproject.toml:version", "README.md:version-badge"]
 
 [build-system]
-requires = ["poetry==1.0.10"]
+requires = ["poetry==1.1.4"]
 build-backend = "poetry.masonry.api"
 

@@ -1,6 +1,6 @@
 """A small fix for odd pactman behaviour."""
 
-from pactman import Pact as OriginalPact
+from pactman import Pact as OriginalPact  # pragma: no cover
 
 
 class Pact(OriginalPact):  # pragma: no cover
