@@ -21,11 +21,10 @@ fi
 
 # Install dependencies
 pip install --upgrade "outcome-devkit>=5.0.0"
-npm i -g pyright
-
 
 if [ $build_system_only -eq 1 ]; then
 PYTHONPATH=src inv setup.build-system
 else
+npm i -g pyright
 PYTHONPATH=src inv setup.auto
 fi
