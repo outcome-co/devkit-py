@@ -1,5 +1,5 @@
 # devkit-py
-![ci-badge](https://github.com/outcome-co/devkit-py/workflows/Release/badge.svg?branch=v4.1.1) ![version-badge](https://img.shields.io/badge/version-4.1.1-brightgreen)
+![ci-badge](https://github.com/outcome-co/devkit-py/workflows/Release/badge.svg?branch=v5.0.0) ![version-badge](https://img.shields.io/badge/version-5.0.0-brightgreen)
 
 A package containing common dev dependencies for python projects.
 
