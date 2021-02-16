@@ -44,4 +44,5 @@ def all(c: Context):  # noqa: A001, WPS125
     ...
 
 
-ns = Collection(all, unit, integration)
+ns = Collection(unit, integration)
+ns.add_task(all, default=True)

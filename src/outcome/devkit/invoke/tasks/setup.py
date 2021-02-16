@@ -16,7 +16,7 @@ def build_system_requirements(e: env.Env) -> Optional[str]:
 @env.add
 def poetry_ld_flags(e: env.Env) -> str:
     # Retrieve the path to the ssl library, used for compiling some python C extensions
-    path = run('brew --prefix openssl', echo=False, hide=True).stdout
+    path: str = run('brew --prefix openssl', echo=False, hide=True).stdout
     return f'{path}/lib'
 
 

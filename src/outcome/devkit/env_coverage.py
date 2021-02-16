@@ -11,16 +11,25 @@ based on the environement (as determined by the `env` module).
 You can use `pragma: no-cover-for-test` to exclude code that shouldn't be covered by unit tests,
 and `pragm: no-cover-for-integration` for code that shouldn't be covered by integration tests.
 """
-from typing import Any
+from typing import Any, Callable, Dict
 
 from coverage import CoveragePlugin
 from coverage.config import CoverageConfig
 from coverage.plugin_support import Plugins
 from outcome.utils import env
 
-_environments = {
-    'only-covered-in-unit-tests': lambda: not env.is_test(),
-    'only-covered-in-integration-tests': lambda: not env.is_integration(),
+
+def not_test():
+    return not env.is_test()
+
+
+def not_integration():
+    return not env.is_integration()
+
+
+_environments: Dict[str, Callable[[], bool]] = {
+    'only-covered-in-unit-tests': not_test,
+    'only-covered-in-integration-tests': not_integration,
 }
 
 ignore_opt_name = 'report:exclude_lines'

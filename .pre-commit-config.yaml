@@ -15,13 +15,6 @@ repos:
   - id: check-merge-conflict
     stages: [commit, push]
 
-- repo: https://github.com/outcome-co/action-check-todos
-  rev: v1.7.5
-  hooks:
-  - id: check-todos
-    args: ['--ignore','coverage','**/*']
-    stages: [push]
-
 - repo: local
   hooks:
 

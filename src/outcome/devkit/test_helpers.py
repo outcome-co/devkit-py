@@ -1,84 +1,51 @@
 """Helper functions for writing test suites."""
 
-from typing import Callable
+from typing import Any, Callable, List, Protocol, Tuple, TypeVar, Union, cast
 
 import pytest
 from outcome.utils import env
 
 
-def skip_for_e2e(fn: Callable) -> Callable:
-    """Marks a unit test or test class as skippable during e2e tests.
-
-    Args:
-        fn (Callable): The function to decorate.
-
-    Returns:
-        Callable: The decorated function.
-    """
-    decorator = pytest.mark.skipif(env.is_e2e(), reason='Skipped in e2e tests')
-    return decorator(fn)
+class Mark(Protocol):
+    name: str
+    args: Tuple[Any, ...]
 
 
-def only_for_e2e(fn: Callable) -> Callable:
-    """Marks a unit test or test class as skippable during e2e tests.
-
-    Args:
-        fn (Callable): The function to decorate.
-
-    Returns:
-        Callable: The decorated function.
-    """
-    decorator = pytest.mark.skipif(not env.is_e2e(), reason='Only for e2e tests')
-    return decorator(fn)
+class Marked(Protocol):
+    pytestmark: List[Mark]
 
 
-def skip_for_integration(fn: Callable) -> Callable:
-    """Marks a unit test or test class as skippable during integration tests.
+# Taken from pytest
+_Markable = TypeVar('_Markable', bound=Union[Callable[..., object], type])
 
-    Args:
-        fn (Callable): The function to decorate.
-
-    Returns:
-        Callable: The decorated function.
-    """
-    decorator = pytest.mark.skipif(env.is_integration(), reason='Skipped in integration tests')
-    return decorator(fn)
+# We cast to _Markable as pytest uses type overrides which obscure the real time
 
 
-def only_for_integration(fn: Callable) -> Callable:
-    """Marks a unit test or test class as skippable during integration tests.
-
-    Args:
-        fn (Callable): The function to decorate.
-
-    Returns:
-        Callable: The decorated function.
-    """
-    decorator = pytest.mark.skipif(not env.is_integration(), reason='Only for integration tests')
-    return decorator(fn)
+def skip_for_e2e(fn: _Markable) -> _Markable:
+    decorated = pytest.mark.skipif(env.is_e2e(), reason='Skipped in e2e tests')(fn)
+    return cast(_Markable, decorated)
 
 
-def skip_for_unit(fn: Callable) -> Callable:
-    """Marks a unit test or test class as skippable during unit tests.
-
-    Args:
-        fn (Callable): The function to decorate.
-
-    Returns:
-        Callable: The decorated function.
-    """
-    decorator = pytest.mark.skipif(env.is_test() and not env.is_integration(), reason='Skipped in unit tests')
-    return decorator(fn)
+def only_for_e2e(fn: _Markable) -> _Markable:
+    decorated = pytest.mark.skipif(not env.is_e2e(), reason='Only for e2e tests')(fn)
+    return cast(_Markable, decorated)
 
 
-def only_for_unit(fn: Callable) -> Callable:
-    """Marks a unit test or test class as skippable during unit tests.
+def skip_for_integration(fn: _Markable) -> _Markable:
+    decorated = pytest.mark.skipif(env.is_integration(), reason='Skipped in integration tests')(fn)
+    return cast(_Markable, decorated)
 
-    Args:
-        fn (Callable): The function to decorate.
 
-    Returns:
-        Callable: The decorated function.
-    """
-    decorator = pytest.mark.skipif(not env.is_test(), reason='Only for unit tests')
-    return decorator(fn)
+def only_for_integration(fn: _Markable) -> _Markable:
+    decorated = pytest.mark.skipif(not env.is_integration(), reason='Only for integration tests')(fn)
+    return cast(_Markable, decorated)
+
+
+def skip_for_unit(fn: _Markable) -> _Markable:
+    decorated = pytest.mark.skipif(env.is_test() and not env.is_integration(), reason='Skipped in unit tests')(fn)
+    return cast(_Markable, decorated)
+
+
+def only_for_unit(fn: _Markable) -> _Markable:
+    decorated = pytest.mark.skipif(not env.is_test(), reason='Only for unit tests')(fn)
+    return cast(_Markable, decorated)

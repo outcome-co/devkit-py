@@ -27,4 +27,5 @@ def all(c: Context):  # noqa: A001, WPS125
     ...
 
 
-ns = Collection(all, coverage, python, docs)
+ns = Collection(coverage, python, docs)
+ns.add_task(all, default=True)

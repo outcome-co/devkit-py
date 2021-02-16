@@ -1,3 +1,4 @@
+from typing import Any, List, cast
 from unittest.mock import Mock, patch
 
 import pytest
@@ -5,16 +6,26 @@ from coverage.config import CoverageConfig
 from outcome.devkit.env_coverage import EnvironmentExclusionPlugin, ignore_opt_name
 
 
+class MockedCoverageConfig(Mock):
+    get_option: Mock
+    set_option: Mock
+
+
+class MockedEnv(Mock):
+    is_integration: Mock
+    is_test: Mock
+
+
 @pytest.fixture
 def mock_config():
-    mock = Mock(spec_set=CoverageConfig)
+    mock = cast(MockedCoverageConfig, Mock(spec_set=CoverageConfig))
 
-    internal_array = []
+    internal_array: List[Any] = []
 
-    def get(key):
+    def get(key: str):
         return internal_array.copy()
 
-    def set_v(key, v):
+    def set_v(key: str, v: Any):
         internal_array.clear()
         internal_array.extend(v)
 
@@ -26,7 +37,7 @@ def mock_config():
 
 class TestEnvCoverage:
     @patch('outcome.devkit.env_coverage.env', auto_spec=True)
-    def test_exclude_integration_tests(self, mock_env: Mock, mock_config: Mock):
+    def test_exclude_integration_tests(self, mock_env: MockedEnv, mock_config: MockedCoverageConfig):
         mock_env.is_integration.return_value = False
         mock_env.is_test.return_value = True
 
@@ -36,7 +47,7 @@ class TestEnvCoverage:
         mock_config.set_option.assert_called_once_with(ignore_opt_name, ['# pragma: only-covered-in-integration-tests'])
 
     @patch('outcome.devkit.env_coverage.env', auto_spec=True)
-    def test_exclude_unit_tests(self, mock_env: Mock, mock_config: Mock):
+    def test_exclude_unit_tests(self, mock_env: MockedEnv, mock_config: MockedCoverageConfig):
         mock_env.is_integration.return_value = True
         mock_env.is_test.return_value = False
 
@@ -46,7 +57,7 @@ class TestEnvCoverage:
         mock_config.set_option.assert_called_once_with(ignore_opt_name, ['# pragma: only-covered-in-unit-tests'])
 
     @patch('outcome.devkit.env_coverage.env', auto_spec=True)
-    def test_exclude_both(self, mock_env: Mock, mock_config: Mock):
+    def test_exclude_both(self, mock_env: MockedEnv, mock_config: MockedCoverageConfig):
         mock_env.is_integration.return_value = False
         mock_env.is_test.return_value = False
 
