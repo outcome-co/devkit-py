@@ -42,7 +42,7 @@ def ci(c: Context):
 @task(build_system)
 def dev(c: Context):
     """Install the dependencies for dev environments."""
-    c.run('env | sort | grep LDFLAGS', env={'LDFLAGS': env.r(poetry_ld_flags)})
+    c.run('poetry install --remove-untracked', env={'LDFLAGS': env.r(poetry_ld_flags)})
 
 
 @task(build_system)
