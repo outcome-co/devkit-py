@@ -43,10 +43,9 @@ def publish(c: Context, repository_name: Optional[str] = None, repository_url: O
 
     if repo_name and repo_url:
         c.run(f'poetry config repositories.{repo_name} {repo_url}')
-
-    repo_name = repo_name or 'pypi'
-
-    c.run(f'poetry publish -r {repo_name}')
+        c.run(f'poetry publish -r {repo_name}')
+    else:
+        c.run('poetry publish')
 
 
 ns = Collection(build, publish)
