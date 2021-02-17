@@ -1,5 +1,5 @@
 # devkit-py
-![Continuous Integration](https://github.com/outcome-co/devkit-py/workflows/Continuous%20Integration/badge.svg) ![version-badge](https://img.shields.io/badge/version-5.2.0-brightgreen)
+![Continuous Integration](https://github.com/outcome-co/devkit-py/workflows/Continuous%20Integration/badge.svg) ![version-badge](https://img.shields.io/badge/version-5.3.0-brightgreen)
 
 A package containing common dev dependencies for python projects.
 
