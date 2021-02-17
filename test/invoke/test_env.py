@@ -70,3 +70,12 @@ def test_optional_read():
     i = env.add(my_none, required=False)
 
     assert env.env.read(i, require=False) is None
+
+
+def test_parameterized_decorator():
+    @env.add(required=False, key='my_key')
+    def my_func(e: env.Env) -> str:
+        return 'foo'
+
+    assert my_func.required is False
+    assert my_func.name == 'my_key'

@@ -37,7 +37,7 @@ from __future__ import annotations
 
 import os
 from contextlib import contextmanager
-from typing import Callable, Dict, Optional, Union, cast
+from typing import Callable, Dict, Optional, Union, cast, overload
 
 SourceFn = Callable[['Env'], Optional[str]]
 Source = Union[SourceFn, str]
@@ -94,9 +94,33 @@ class Env:  # noqa: WPS214
     def __init__(self):
         self.reset()
 
-    def add(self, fn: SourceFn, required: bool = True, key: Optional[str] = None) -> EnvItem:
-        key = key or fn.__name__
-        return self._add(key, fn, required)
+    @overload
+    def add(self, required: bool, key: Optional[str] = None) -> Callable[[SourceFn], EnvItem]:  # pragma: no cover
+        ...
+
+    @overload
+    def add(self, fn: SourceFn, required: bool = True, key: Optional[str] = None) -> EnvItem:  # pragma: no cover
+        ...
+
+    def add(
+        self, fn: Optional[SourceFn] = None, required: bool = True, key: Optional[str] = None,
+    ) -> Union[EnvItem, Callable[[SourceFn], EnvItem]]:
+        # This can be used as a straight decorator, or a parameterized decorator
+        #
+        # @env.add
+        # def foo() -> str: ...  # noqa: E800
+        #
+        # @env.add(required=False)
+        # def bar() -> Optional[str]: ...  # noqa: E800
+
+        if callable(fn):
+            key = key or fn.__name__
+            return self._add(key, fn, required)
+
+        def decorator(f: SourceFn) -> EnvItem:
+            return self.add(f, required=required, key=key)
+
+        return decorator
 
     def read(self, key: ReadKey, require: bool = False) -> Optional[str]:
         if isinstance(key, EnvItem):
@@ -144,6 +168,7 @@ env = Env()
 
 
 read = r = env.strict_read  # noqa: WPS429
+nullable_read = env.read
 add = env.add
 from_os = env.from_os
 declare = env.declare

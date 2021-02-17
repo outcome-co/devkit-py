@@ -12,6 +12,7 @@ homepage = "https://github.com/outcome-co/devkit-py"
 repository = "https://github.com/outcome-co/devkit-py"
 documentation = "https://github.com/outcome-co/devkit-py#README"
 
+
 [tool.poetry.dependencies]
 python = "^3.8.6"
 flake8-builtins = "^1.5.2"
