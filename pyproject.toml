@@ -42,6 +42,7 @@ pre-commit = "^2.10.1"
 outcome-stubs = "^0.3.0"
 rich = "^9.11.0"
 pydantic = "^1.7.3"
+poetry = "1.1.4"
 
 [tool.poetry.dev-dependencies]
 
