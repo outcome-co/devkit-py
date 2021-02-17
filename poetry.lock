@@ -1440,6 +1440,23 @@ python-versions = ">=3.6"
 pbr = ">=2.0.0,<2.1.0 || >2.1.0"
 
 [[package]]
+name = "syrupy"
+version = "1.1.0"
+description = "PyTest Snapshot Test Utility"
+category = "main"
+optional = false
+python-versions = ">=3.6"
+
+[package.dependencies]
+attrs = ">=18.2.0,<21.0.0"
+colored = ">=1.3.92,<2.0.0"
+pytest = ">=5.1.0,<7.0.0"
+
+[package.extras]
+dev = ["black", "flake8-bugbear", "flake8-builtins", "flake8-comprehensions", "flake8-i18n", "flake8", "isort", "mypy", "pip-tools", "py-githooks", "pygithub", "pyperf", "semver", "twine", "wheel", "codecov", "coverage", "invoke"]
+test = ["codecov", "coverage", "invoke"]
+
+[[package]]
 name = "testfixtures"
 version = "6.17.1"
 description = "A collection of helpers and mock objects for unit tests and doc tests."
@@ -1601,7 +1618,7 @@ python-versions = "*"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8.6"
-content-hash = "add2855630eb3038bd3af7b4c4b151cd50e837323a98a0d1c4d897fb05f3fa32"
+content-hash = "6b07f5e6a14f1f3d5b15e507670aa2629411ee957b72a09fb94b81bc1f16c9b6"
 
 [metadata.files]
 appdirs = [
@@ -2353,6 +2370,10 @@ snowballstemmer = [
 stevedore = [
     {file = "stevedore-3.3.0-py3-none-any.whl", hash = "sha256:50d7b78fbaf0d04cd62411188fa7eedcb03eb7f4c4b37005615ceebe582aa82a"},
     {file = "stevedore-3.3.0.tar.gz", hash = "sha256:3a5bbd0652bf552748871eaa73a4a8dc2899786bc497a2aa1fcb4dcdb0debeee"},
+]
+syrupy = [
+    {file = "syrupy-1.1.0-py3-none-any.whl", hash = "sha256:262456c69ad9f3e099955c3f7f0a42193ba4a6299b4293cb7588e0b7ae0cf9e5"},
+    {file = "syrupy-1.1.0.tar.gz", hash = "sha256:5e2d34d68b365908885b5c8e7b3e5eee845e89441f3793cc5d78503f5f890f3d"},
 ]
 testfixtures = [
     {file = "testfixtures-6.17.1-py2.py3-none-any.whl", hash = "sha256:9ed31e83f59619e2fa17df053b241e16e0608f4580f7b5a9333a0c9bdcc99137"},

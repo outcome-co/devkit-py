@@ -5,11 +5,16 @@ from outcome.utils.env import is_ci
 _default_target = './test'
 
 
-def run_tests(c: Context, app_env: str, coverage: str, target: str, capture: bool = True):
+def run_tests(  # noqa: WPS211
+    c: Context, app_env: str, coverage: str, target: str, capture: bool = True, update_snapshots: bool = False,
+):
     options = ['-vvv', '--ff', '--maxfail=1']
 
     if capture:
         options.append('-s')
+
+    if update_snapshots:
+        options.append('--snapshot-update')
 
     options_string = ' '.join(options)
     env = {'APP_ENV': app_env, 'PYTHONPATH': 'src'}
@@ -27,15 +32,15 @@ def run_tests(c: Context, app_env: str, coverage: str, target: str, capture: boo
 
 
 @task(clean.all)
-def unit(c: Context, target: str = _default_target, capture: bool = True):
+def unit(c: Context, target: str = _default_target, capture: bool = True, update_snapshots: bool = False):
     """Run unit tests."""
-    run_tests(c, 'test', 'unit', target, capture)
+    run_tests(c, 'test', 'unit', target, capture, update_snapshots)
 
 
 @task(clean.all)
-def integration(c: Context, target: str = _default_target, capture: bool = True):
+def integration(c: Context, target: str = _default_target, capture: bool = True, update_snapshots: bool = False):
     """Run integration tests."""
-    run_tests(c, 'integration', 'integration', target, capture)
+    run_tests(c, 'integration', 'integration', target, capture, update_snapshots)
 
 
 @task(clean.all, unit, integration)
