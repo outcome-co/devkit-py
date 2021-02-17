@@ -17,7 +17,7 @@ def build_system_requirements(e: env.Env) -> Optional[str]:
 def poetry_ld_flags(e: env.Env) -> str:
     # Retrieve the path to the ssl library, used for compiling some python C extensions
     path: str = run('brew --prefix openssl', echo=False, hide=True).stdout
-    return f'{path}/lib'
+    return f'{path.strip()}/lib'
 
 
 @task
@@ -42,7 +42,7 @@ def ci(c: Context):
 @task(build_system)
 def dev(c: Context):
     """Install the dependencies for dev environments."""
-    c.run('poetry install --remove-untracked', env={'LDFLAGS': env.r(poetry_ld_flags)})
+    c.run('env | sort | grep LDFLAGS', env={'LDFLAGS': env.r(poetry_ld_flags)})
 
 
 @task(build_system)
