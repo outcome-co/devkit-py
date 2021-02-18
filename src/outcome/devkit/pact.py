@@ -13,6 +13,8 @@ from urllib3.response import HTTPResponse
 
 if TYPE_CHECKING:  # pragma: no cover
     from pactman.mock.pact import V3Interaction  # noqa: WPS433
+else:
+    V3Interaction = Any  # noqa: WPS440
 
 
 # This is a helper decorator that should be used on pact setup functions
