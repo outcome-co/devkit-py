@@ -49,15 +49,20 @@ def code_dirs(e: env.Env) -> str:
 @task(clean.all)
 def types(c: Context, show_information: bool = False):
     """Run type-checking."""
-    res = cast(Result, c.run(f'poetry run pyright {env.r(code_dirs)} --outputjson', echo=True, hide=True, warn=True))
+    directories = env.r(code_dirs)
+    res = cast(Result, c.run(f'poetry run pyright {directories} --outputjson', echo=True, hide=True, warn=True))
 
     assert isinstance(res.stdout, str)
     results = PyrightOutput.parse_raw(res.stdout)
 
     console = Console()
 
+    files_analyzed = results.summary.files_analyzed
+    warning_count = results.summary.warning_count
+    error_count = results.summary.error_count
+
     console.print(
-        f'pyright analyzed {results.summary.files_analyzed} file(s), with {results.summary.warning_count} warnings and {results.summary.error_count} errors',  # noqa: E501
+        f'pyright analyzed {files_analyzed} file(s), with {warning_count} warnings and {error_count} errors',  # noqa: E501
         style='cyan',
     )
 
@@ -74,9 +79,12 @@ def types(c: Context, show_information: bool = False):
             color = 'blue'
 
         message = f'[dim]({d.rule})[/dim] {d.message}' if d.rule else d.message
-        console.print(
-            f'{d.file}:{d.range.start.line+1}:{d.range.start.character+1} - [bold {color}]{d.severity}[/bold {color}] {message}',
-        )
+        file = d.file
+        line = d.range.start.line + 1
+        col = d.range.start.character + 1
+        severity = d.severity
+
+        console.print(f'{file}:{line}:{col} - [bold {color}]{severity}[/bold {color}] {message}')
 
     if results.summary.error_count > 0:
         res.hide = ()
@@ -86,25 +94,28 @@ def types(c: Context, show_information: bool = False):
 @task(clean.all)
 def format(c: Context):  # noqa: A001, WPS125
     """Run formatter."""
+    directories = env.r(code_dirs)
     if is_ci():
-        c.run(f'poetry run black --check {env.r(code_dirs)}')
+        c.run(f'poetry run black --check {directories}')
     else:
-        c.run(f'poetry run black {env.r(code_dirs)}')
+        c.run(f'poetry run black {directories}')
 
 
 @task(clean.all)
 def isort(c: Context):
     """Run isort."""
+    directories = env.r(code_dirs)
     if is_ci():
-        c.run(f'poetry run isort -rc {env.r(code_dirs)} --check-only')
+        c.run(f'poetry run isort -rc {directories} --check-only')
     else:
-        c.run(f'poetry run isort -rc {env.r(code_dirs)}')
+        c.run(f'poetry run isort -rc {directories}')
 
 
 @task(clean.all)
 def lint(c: Context):
     """Run flake8."""
-    c.run(f'poetry run flake8 {env.r(code_dirs)}')
+    directories = env.r(code_dirs)
+    c.run(f'poetry run flake8 {directories}')
 
 
 @task(clean.all, types, isort, format, lint)

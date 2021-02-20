@@ -51,7 +51,7 @@ jobs:
       strategy:
         fail-fast: true
         matrix:
-          python: ['3.8']
+          python: ['3.8', '3.9']
 
       # This is triggered when we're not pushing a chore to master - written with the more
       # complicated syntax (OR of NOT) instead of (NOT of AND) for syntax limitations

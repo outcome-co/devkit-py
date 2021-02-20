@@ -24,7 +24,7 @@ def poetry_ld_flags(e: env.Env) -> str:
 def build_system(c: Context):
     """Install essential build system components."""
     requirements = env.r(build_system_requirements)
-    c.run(f'pip install {requirements}')
+    c.run(f'pip install "{requirements}"')
 
     if not is_ci():
         # Setup pre-commit

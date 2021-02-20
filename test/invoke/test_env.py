@@ -55,7 +55,7 @@ def test_read_from_env():
 
 def test_read_none_for_required():
     def my_none(e: env.Env) -> None:
-        return None
+        return  # noqa: WPS324
 
     env.add(my_none)
 
@@ -65,7 +65,7 @@ def test_read_none_for_required():
 
 def test_optional_read():
     def my_none(e: env.Env) -> None:
-        return None
+        return  # noqa: WPS324
 
     i = env.add(my_none, required=False)
 
