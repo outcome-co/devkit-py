@@ -1,0 +1,1 @@
+{"Command":"\"docker-entrypoint.s…\"","CreatedAt":"2021-02-18 11:23:43 +0100 CET","ID":"83d15f3175ad","Image":"postgres:latest","Labels":"","LocalVolumes":"1","Mounts":"a858477a2cdc91…","Names":"review-api-app-db,other-name","Networks":"bridge","Ports":"0.0.0.0:5432-\u003e5432/tcp","RunningFor":"4 days ago","Size":"63B (virtual 314MB)","State":"running","Status":"Up 4 days"}

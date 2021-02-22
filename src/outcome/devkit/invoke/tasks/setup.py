@@ -1,20 +1,20 @@
+import platform
 from typing import Optional
 
 from invoke import Collection, Context, run, task
 from outcome.devkit.invoke import env
+from outcome.devkit.invoke.tasks import package
 from outcome.read_toml import lib as read_toml
 from outcome.utils.env import is_ci
-
-env.declare('pyproject.toml', './pyproject.toml')
 
 
 @env.add
 def build_system_requirements(e: env.Env) -> Optional[str]:
-    return read_toml.read_from_file(env.r('pyproject.toml'), 'build-system.requires')
+    return read_toml.read_from_file(env.r(package.pyproject_file), 'build-system.requires')
 
 
 @env.add
-def poetry_ld_flags(e: env.Env) -> str:
+def poetry_ld_flags_from_brew(e: env.Env) -> str:
     # Retrieve the path to the ssl library, used for compiling some python C extensions
     path: str = run('brew --prefix openssl', echo=False, hide=True).stdout
     return f'{path.strip()}/lib'
@@ -42,7 +42,12 @@ def ci(c: Context):
 @task(build_system)
 def dev(c: Context):
     """Install the dependencies for dev environments."""
-    c.run('poetry install --remove-untracked', env={'LDFLAGS': env.r(poetry_ld_flags)})
+    install_env = {}
+
+    if platform.system() == 'Darwin':
+        install_env.update({'LDFLAGS': env.r(poetry_ld_flags_from_brew)})
+
+    c.run('poetry install --remove-untracked', env=install_env)
 
 
 @task(build_system)

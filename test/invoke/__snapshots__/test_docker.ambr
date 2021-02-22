@@ -1,0 +1,52 @@
+# name: test_create_container_with_detach
+  <class '_CallList'> [
+    <class '_Call'> (
+      'run',
+      <class 'tuple'> (
+        'docker run --rm --name my-container -d -p 80:80 -e MY_VAR=MY_VAR_VALUE -e MY_OTHER_VAR=MY_OTHER_VAR_VALUE my-image',
+      ),
+      <class 'dict'> {
+      },
+    ),
+  ]
+---
+# name: test_create_container_without_detach
+  <class '_CallList'> [
+    <class '_Call'> (
+      'run',
+      <class 'tuple'> (
+        'docker run --rm --name my-container -d -p 80:80 -e MY_VAR=MY_VAR_VALUE -e MY_OTHER_VAR=MY_OTHER_VAR_VALUE --name my-container -it -e MY_VAR=MY_VAR_VALUE -e MY_OTHER_VAR=MY_OTHER_VAR_VALUE my-image',
+      ),
+      <class 'dict'> {
+      },
+    ),
+  ]
+---
+# name: test_get_docker_containers
+  <class '_CallList'> [
+    <class '_Call'> (
+      '',
+      <class 'tuple'> (
+        "docker ps --format '{{json .}}' -a",
+      ),
+      <class 'dict'> {
+        'echo': False,
+        'hide': True,
+      },
+    ),
+  ]
+---
+# name: test_get_docker_containers_all
+  <class '_CallList'> [
+    <class '_Call'> (
+      '',
+      <class 'tuple'> (
+        "docker ps --format '{{json .}}'",
+      ),
+      <class 'dict'> {
+        'echo': False,
+        'hide': True,
+      },
+    ),
+  ]
+---

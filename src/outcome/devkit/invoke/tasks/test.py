@@ -10,7 +10,7 @@ def run_tests(  # noqa: WPS211
 ):
     options = ['-vvv', '--ff', '--maxfail=1']
 
-    if capture:
+    if not capture:
         options.append('-s')
 
     if update_snapshots:

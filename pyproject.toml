@@ -101,3 +101,8 @@ version_files = ["pyproject.toml:version", "README.md:version-badge"]
 requires = ["poetry==1.1.4"]
 build-backend = "poetry.masonry.api"
 
+[tool.pytest.ini_options]
+filterwarnings = [
+    "ignore::DeprecationWarning:invoke",
+    "ignore::DeprecationWarning:_yaml",
+]
