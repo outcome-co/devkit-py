@@ -2,6 +2,19 @@ from invoke import Collection, Context, task
 from outcome.devkit.invoke import docker, env
 from outcome.devkit.invoke.tasks import package
 from outcome.read_toml import lib as read_toml
+from outcome.utils.config import Config
+
+defaults = {
+    'DB_IMAGE': 'postgres:latest',
+    'DB_NAME': 'postgres',
+    'DB_USER': 'postgres',
+    'DB_PASSWORD': 'postgres',
+    'DB_HOST': '127.0.0.1',
+    'DB_PORT': '5432',
+}
+
+
+config = Config(package.pyproject_path, defaults=defaults)
 
 
 def read_or_default(key: str, default: str) -> str:
@@ -11,34 +24,12 @@ def read_or_default(key: str, default: str) -> str:
         return default
 
 
-@env.add
-def database_image(e: env.Env) -> str:
-    return read_or_default('db.image', 'postgres:latest')
-
-
-@env.add
-def database_name(e: env.Env) -> str:
-    return read_or_default('db.name', 'postgres')
-
-
-@env.add
-def database_user(e: env.Env) -> str:
-    return read_or_default('db.user', 'postgres')
-
-
-@env.add
-def database_password(e: env.Env) -> str:
-    return read_or_default('db.password', 'postgres')
-
-
-@env.add
-def database_host(e: env.Env) -> str:
-    return read_or_default('db.host', '127.0.0.1')
-
-
-@env.add
-def database_port(e: env.Env) -> str:
-    return read_or_default('db.port', '5432')
+database_image = env.from_config('DB_IMAGE', config=config)
+database_name = env.from_config('DB_NAME', config=config)
+database_user = env.from_config('DB_USER', config=config)
+database_password = env.from_config('DB_PASSWORD', config=config)
+database_port = env.from_config('DB_PORT', config=config)
+database_host = env.from_config('DB_HOST', config=config)
 
 
 @env.add

@@ -2,6 +2,7 @@ from unittest.mock import Mock, patch
 
 import pytest
 from outcome.devkit.invoke import env
+from outcome.utils.config import Config
 
 
 @pytest.fixture(autouse=True)
@@ -79,3 +80,9 @@ def test_parameterized_decorator():
 
     assert my_func.required is False
     assert my_func.name == 'my_key'
+
+
+def test_config():
+    config = Config(defaults={'MY_KEY': 'var'})
+    i = env.from_config('MY_KEY', config=config)
+    assert env.r(i) == 'var'

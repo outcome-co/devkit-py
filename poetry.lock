@@ -906,7 +906,7 @@ pactman = ">=2.28.0,<3.0.0"
 
 [[package]]
 name = "outcome-utils"
-version = "5.0.2"
+version = "5.0.3"
 description = "A collection of python utils."
 category = "main"
 optional = false
@@ -1619,7 +1619,7 @@ python-versions = "*"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8.6"
-content-hash = "36b6d17042b6f24addb939a1a0c080db9d1d047060bf1f0de5a7de7cd6f01562"
+content-hash = "1b16c5b367e05cb314f7486599892010502b53a928d490dd34acac470c024d84"
 
 [metadata.files]
 appdirs = [
@@ -2106,8 +2106,8 @@ outcome-stubs = [
     {file = "outcome_stubs-0.4.1-py3-none-any.whl", hash = "sha256:13d68b0ce21ced87c11629463a67ced67489ae148cc42d7f3db888e1beebe210"},
 ]
 outcome-utils = [
-    {file = "outcome-utils-5.0.2.tar.gz", hash = "sha256:e590db3c8b60ceda92e4a9c734166c51c2c217709954ad5f4d2aee8dba31e24c"},
-    {file = "outcome_utils-5.0.2-py3-none-any.whl", hash = "sha256:2cfae642cf71aed03114af9f5b17e96e624803afe7e62262417261ce812fd5ab"},
+    {file = "outcome-utils-5.0.3.tar.gz", hash = "sha256:e81a34a95da1a632f61061e4242ed6d44dd05d67011e550ad566fe2624a8b48d"},
+    {file = "outcome_utils-5.0.3-py3-none-any.whl", hash = "sha256:c078d126a9499d282a050098476e9ba14859848f0a3bbd56f4d58efc36d63759"},
 ]
 packaging = [
     {file = "packaging-20.9-py2.py3-none-any.whl", hash = "sha256:67714da7f7bc052e064859c05c595155bd1ee9f69f76557e21f051443c20947a"},

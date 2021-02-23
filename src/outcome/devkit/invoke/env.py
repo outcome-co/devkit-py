@@ -39,6 +39,8 @@ import os
 from contextlib import contextmanager
 from typing import Callable, Dict, Optional, Union, cast, overload
 
+from outcome.utils.config import Config
+
 SourceFn = Callable[['Env'], Optional[str]]
 Source = Union[SourceFn, str]
 ReadKey = Union[str, 'EnvItem']
@@ -149,6 +151,16 @@ class Env:  # noqa: WPS214
 
         return self.add(read_from_os, required=required, key=key)
 
+    def from_config(self, key: str, required: bool = True, config: Optional[Config] = None) -> EnvItem:
+        effective_config = config or Config()
+
+        def read_from_config(env: Env) -> Optional[str]:
+            value = effective_config.get(key)
+            assert isinstance(value, str)
+            return value
+
+        return self.add(read_from_config, required=required, key=key)
+
     def declare(self, key: str, value: str) -> EnvItem:
         return self._add(key, value, required=True)
 
@@ -173,3 +185,4 @@ add = env.add
 from_os = env.from_os
 declare = env.declare
 reset = env.reset
+from_config = env.from_config

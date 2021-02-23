@@ -1,7 +1,13 @@
+from pathlib import Path
+
 from outcome.devkit.invoke import env
 from outcome.read_toml import lib as read_toml
+from outcome.utils.config import Config
 
-pyproject_file = env.declare('pyproject.toml', './pyproject.toml')
+pyproject_path = Path.cwd() / 'pyproject.toml'
+
+pyproject_file = env.declare('pyproject.toml', str(pyproject_path))
+config = Config(pyproject_path)
 
 
 @env.add
