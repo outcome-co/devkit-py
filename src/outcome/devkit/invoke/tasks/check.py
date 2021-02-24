@@ -42,14 +42,14 @@ class PyrightOutput(BaseModel):
 
 
 @env.add
-def code_dirs(e: env.Env) -> str:
-    return ' '.join(d for d in ('./src', './bin', './test') if Path(d).is_dir())
+def check_targets(e: env.Env) -> str:
+    return ' '.join(d for d in ('./src', './bin', './test', './tasks.py') if Path(d).exists())
 
 
 @task(clean.all)
 def types(c: Context, show_information: bool = False):
     """Run type-checking."""
-    directories = env.r(code_dirs)
+    directories = env.r(check_targets)
     res = cast(Result, c.run(f'poetry run pyright {directories} --outputjson', echo=True, hide=True, warn=True))
 
     assert isinstance(res.stdout, str)
@@ -94,7 +94,7 @@ def types(c: Context, show_information: bool = False):
 @task(clean.all)
 def format(c: Context):  # noqa: A001, WPS125
     """Run formatter."""
-    directories = env.r(code_dirs)
+    directories = env.r(check_targets)
     if is_ci():
         c.run(f'poetry run black --check {directories}')
     else:
@@ -104,7 +104,7 @@ def format(c: Context):  # noqa: A001, WPS125
 @task(clean.all)
 def isort(c: Context):
     """Run isort."""
-    directories = env.r(code_dirs)
+    directories = env.r(check_targets)
     if is_ci():
         c.run(f'poetry run isort -rc {directories} --check-only')
     else:
@@ -114,7 +114,7 @@ def isort(c: Context):
 @task(clean.all)
 def lint(c: Context):
     """Run flake8."""
-    directories = env.r(code_dirs)
+    directories = env.r(check_targets)
     c.run(f'poetry run flake8 {directories}')
 
 
