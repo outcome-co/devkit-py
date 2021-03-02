@@ -2,6 +2,8 @@
 
 import sys
 from contextlib import contextmanager
+from types import ModuleType
+from typing import Dict
 
 
 @contextmanager
@@ -17,7 +19,7 @@ def without_modules(*modules: str):
     # Get all currently loaded modules
     excluded_modules = [m for m in sys.modules.keys() if any(m.startswith(ex_m) for ex_m in modules)]
 
-    extracted_modules = {}
+    extracted_modules: Dict[str, ModuleType] = {}
 
     # Delete them from the sys.modules
     # Setting them to None triggers an ImportError on attempted

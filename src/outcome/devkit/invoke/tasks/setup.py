@@ -1,5 +1,5 @@
 import platform
-from typing import Optional
+from typing import Dict, Optional
 
 from invoke import Collection, Context, run, task
 from outcome.devkit.invoke import env
@@ -42,7 +42,7 @@ def ci(c: Context):
 @task(build_system)
 def dev(c: Context):
     """Install the dependencies for dev environments."""
-    install_env = {}
+    install_env: Dict[str, str] = {}
 
     if platform.system() == 'Darwin':
         install_env.update({'LDFLAGS': env.r(poetry_ld_flags_from_brew)})
