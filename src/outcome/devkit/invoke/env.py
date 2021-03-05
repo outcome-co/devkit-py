@@ -97,11 +97,13 @@ class Env:  # noqa: WPS214
         self.reset()
 
     @overload
-    def add(self, required: bool, key: Optional[str] = None) -> Callable[[SourceFn], EnvItem]:  # pragma: no cover
+    def add(
+        self, fn: None = None, *, required: bool, key: Optional[str] = None,
+    ) -> Callable[[SourceFn], EnvItem]:  # pragma: no cover
         ...
 
     @overload
-    def add(self, fn: SourceFn, required: bool = True, key: Optional[str] = None) -> EnvItem:  # pragma: no cover
+    def add(self, fn: SourceFn, *, required: bool = True, key: Optional[str] = None) -> EnvItem:  # pragma: no cover
         ...
 
     def add(
