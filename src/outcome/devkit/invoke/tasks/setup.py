@@ -33,13 +33,20 @@ def build_system(c: Context):
         c.run('pre-commit install -t commit-msg')
 
 
-@task(build_system)
+@task
+def install_pyright(c: Context, version: str = '1.1.119'):
+    """Install Pyright (specific version)"""
+
+    c.run(f'npm i -g pyright@{version}')
+
+
+@task(build_system, install_pyright)
 def ci(c: Context):
     """Install the dependencies for CI environments."""
     c.run('poetry install --no-interaction --no-ansi --remove-untracked')
 
 
-@task(build_system)
+@task(build_system, install_pyright)
 def dev(c: Context):
     """Install the dependencies for dev environments."""
     install_env: Dict[str, str] = {}
@@ -66,4 +73,4 @@ def auto(c: Context):
         dev(c)
 
 
-namespace = Collection(build_system, ci, dev, production, auto)
+namespace = Collection(build_system, install_pyright, ci, dev, production, auto)
