@@ -39,9 +39,8 @@ def database_container(e: env.Env) -> str:
 
 
 @task
-def start(c: Context):
-    container_name = env.r(database_container)
-
+def start(c: Context, container_name: str = env.r(database_container)):
+    """Start the database container."""
     # If the container is running, there's nothing to do
     if docker.container_is_running(c, container_name):
         return
@@ -60,9 +59,8 @@ def start(c: Context):
 
 
 @task
-def stop(c: Context):
-    container_name = env.r(database_container)
-
+def stop(c: Context, container_name: str = env.r(database_container)):
+    """Stop the database container."""
     if docker.container_is_running(c, container_name):
         docker.stop_container(c, container_name)
 
