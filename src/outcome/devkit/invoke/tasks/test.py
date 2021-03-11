@@ -8,7 +8,7 @@ _default_target = './test'
 def run_tests(  # noqa: WPS211
     c: Context, app_env: str, coverage: str, target: str, capture: bool = True, update_snapshots: bool = False,
 ):
-    options = ['-vvv', '--ff', '--maxfail=1']
+    options = ['-vvv', '--ff', '--maxfail=1', '--snapshot-warn-unused']
 
     if not capture:
         options.append('-s')
