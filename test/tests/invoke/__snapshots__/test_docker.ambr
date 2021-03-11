@@ -1,9 +1,57 @@
+# name: test_create_container_with_command
+  <class '_CallList'> [
+    <class '_Call'> (
+      'run',
+      <class 'tuple'> (
+        'docker run --rm --name my-container -d my-image my-command',
+      ),
+      <class 'dict'> {
+      },
+    ),
+  ]
+---
+# name: test_create_container_with_command_and_args
+  <class '_CallList'> [
+    <class '_Call'> (
+      'run',
+      <class 'tuple'> (
+        'docker run --rm --name my-container -d my-image my-command --flag --tag 1.2.3',
+      ),
+      <class 'dict'> {
+      },
+    ),
+  ]
+---
 # name: test_create_container_with_detach
   <class '_CallList'> [
     <class '_Call'> (
       'run',
       <class 'tuple'> (
-        'docker run --rm --name my-container -d -p 80:80 -e MY_VAR=MY_VAR_VALUE -e MY_OTHER_VAR=MY_OTHER_VAR_VALUE my-image',
+        'docker run --rm --name my-container -d -p 80:80 -e MY_VAR="MY_VAR_VALUE" -e MY_OTHER_VAR="MY_OTHER_VAR_VALUE" my-image',
+      ),
+      <class 'dict'> {
+      },
+    ),
+  ]
+---
+# name: test_create_container_with_volume
+  <class '_CallList'> [
+    <class '_Call'> (
+      'run',
+      <class 'tuple'> (
+        'docker run --rm --name my-container -d -v example:volume my-image',
+      ),
+      <class 'dict'> {
+      },
+    ),
+  ]
+---
+# name: test_create_container_with_workdir
+  <class '_CallList'> [
+    <class '_Call'> (
+      'run',
+      <class 'tuple'> (
+        'docker run --rm --name my-container -d -w example_workdir my-image',
       ),
       <class 'dict'> {
       },
@@ -15,7 +63,7 @@
     <class '_Call'> (
       'run',
       <class 'tuple'> (
-        'docker run --rm --name my-container -d -p 80:80 -e MY_VAR=MY_VAR_VALUE -e MY_OTHER_VAR=MY_OTHER_VAR_VALUE --name my-container -it -e MY_VAR=MY_VAR_VALUE -e MY_OTHER_VAR=MY_OTHER_VAR_VALUE my-image',
+        'docker run --rm --name my-container -it -e MY_VAR="MY_VAR_VALUE" -e MY_OTHER_VAR="MY_OTHER_VAR_VALUE" my-image',
       ),
       <class 'dict'> {
       },

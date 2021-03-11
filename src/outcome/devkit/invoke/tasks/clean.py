@@ -1,3 +1,6 @@
+import shutil
+from pathlib import Path
+
 from invoke import Collection, Context, task
 
 
@@ -21,11 +24,22 @@ def coverage(c: Context):
     c.run('rm -rf coverage')
 
 
-@task(docs, python, coverage)
+@task
+def pacts(c: Context, pact_dir: str = 'pacts'):
+    """Remove Pact files.
+
+    When we use Pact, as it is in `merge` writing mode, we need to delete all files in the
+    pacts directory to reset the list of known interactions before integration tests.
+    """
+    if Path(pact_dir).exists():
+        shutil.rmtree(pact_dir)
+
+
+@task(docs, python, coverage, pacts)
 def all(c: Context):  # noqa: A001, WPS125
     """Clean everything."""
     ...
 
 
-ns = Collection(coverage, python, docs)
+ns = Collection(coverage, python, docs, pacts)
 ns.add_task(all, default=True)

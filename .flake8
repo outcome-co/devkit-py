@@ -42,7 +42,8 @@ ignore = W503, # Allow line break before binary operator
 
 per-file-ignores = test/**.py: WPS442, WPS226, WPS219, S101, D100, WPS211, WPS609, WPS118, WPS450
                    src/outcome/devkit/fixtures/**.py: WPS442, WPS226, WPS219, S101, D100, WPS211, WPS609, WPS118, WPS450
-                   src/outcome/devkit/invoke/tasks/**.py: D
+                   src/outcome/devkit/invoke/tasks/**.py: D, WPS226
+
 # WPS442, # pytest fixtures require shadowing
 # WPS211, # Too many arguments
 # WPS226, # Allow several usage of string constants (> 3)
@@ -52,7 +53,5 @@ per-file-ignores = test/**.py: WPS442, WPS226, WPS219, S101, D100, WPS211, WPS60
 # WPS609, # Direct magic method usage
 # WPS118, # Name too long
 # WPS450, # Protected imports
-
-
 
 [isort]

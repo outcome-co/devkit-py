@@ -3,7 +3,7 @@ from typing import Literal, Optional, Sequence, cast
 
 from invoke import Collection, Context, Result, UnexpectedExit, task
 from outcome.devkit.invoke import env
-from outcome.devkit.invoke.tasks import clean
+from outcome.devkit.invoke.tasks import clean as clean_tasks
 from outcome.utils.env import is_ci
 from pydantic import BaseModel, Field
 from rich.console import Console
@@ -46,7 +46,13 @@ def check_targets(e: env.Env) -> str:
     return ' '.join(d for d in ('./src', './bin', './test', './tasks.py') if Path(d).exists())
 
 
-@task(clean.all)
+@task(clean_tasks.docs, clean_tasks.python, clean_tasks.coverage)
+def clean(c: Context):  # noqa: A001, WPS125
+    """Clean everything for checks."""
+    ...
+
+
+@task(clean)
 def types(c: Context, show_information: bool = False):
     """Run type-checking."""
     directories = env.r(check_targets)
@@ -91,7 +97,7 @@ def types(c: Context, show_information: bool = False):
         raise UnexpectedExit(res, 'Error checking types')
 
 
-@task(clean.all)
+@task(clean)
 def format(c: Context):  # noqa: A001, WPS125
     """Run formatter."""
     directories = env.r(check_targets)
@@ -101,7 +107,7 @@ def format(c: Context):  # noqa: A001, WPS125
         c.run(f'poetry run black {directories}')
 
 
-@task(clean.all)
+@task(clean)
 def isort(c: Context):
     """Run isort."""
     directories = env.r(check_targets)
@@ -111,14 +117,14 @@ def isort(c: Context):
         c.run(f'poetry run isort -rc {directories}')
 
 
-@task(clean.all)
+@task(clean)
 def lint(c: Context):
     """Run flake8."""
     directories = env.r(check_targets)
     c.run(f'poetry run flake8 {directories}')
 
 
-@task(clean.all, types, isort, format, lint)
+@task(clean, types, isort, format, lint)
 def all(c: Context):  # noqa: A001, WPS125
     """Run all checks."""
     ...

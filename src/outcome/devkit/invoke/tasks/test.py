@@ -1,5 +1,5 @@
 from invoke import Collection, Context, task
-from outcome.devkit.invoke.tasks import clean
+from outcome.devkit.invoke.tasks import clean as clean_tasks
 from outcome.utils.env import is_ci
 
 _default_target = './test'
@@ -31,19 +31,25 @@ def run_tests(  # noqa: WPS211
         c.run('poetry run coverage html --show-contexts')
 
 
-@task(clean.all)
+@task(clean_tasks.docs, clean_tasks.python, clean_tasks.coverage, clean_tasks.pacts)
+def clean(c: Context):  # noqa: A001, WPS125
+    """Clean everything for tests."""
+    ...
+
+
+@task(clean)
 def unit(c: Context, target: str = _default_target, capture: bool = True, update_snapshots: bool = False):
     """Run unit tests."""
     run_tests(c, 'test', 'unit', target, capture, update_snapshots)
 
 
-@task(clean.all)
+@task(clean)
 def integration(c: Context, target: str = _default_target, capture: bool = True, update_snapshots: bool = False):
     """Run integration tests."""
     run_tests(c, 'integration', 'integration', target, capture, update_snapshots)
 
 
-@task(clean.all, unit, integration)
+@task(clean, unit, integration)
 def all(c: Context):  # noqa: A001, WPS125
     """Run unit and integration tests."""
     ...
